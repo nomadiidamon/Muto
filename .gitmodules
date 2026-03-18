@@ -1,0 +1,18 @@
+[submodule "Vesper/vendor/spdlog"]
+	path = Vesper/vendor/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "Vesper/vendor/GLFW"]
+	path = Vesper/vendor/GLFW
+	url = https://github.com/nomadiidamon/glfw
+[submodule "Vesper/vendor/imgui"]
+	path = Vesper/vendor/imgui
+	url = https://github.com/nomadiidamon/imgui
+[submodule "Vesper/vendor/glm"]
+	path = Vesper/vendor/glm
+	url = https://github.com/g-truc/glm
+[submodule "Vesper/vendor/yaml-cpp"]
+	path = Vesper/vendor/yaml-cpp
+	url = https://github.com/thecherno/yaml-cpp
+[submodule "Vesper/vendor/ImGuizmo"]
+	path = Vesper/vendor/ImGuizmo
+	url = https://github.com/nomadiidamon/ImGuizmo
