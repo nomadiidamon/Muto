@@ -1,10 +1,10 @@
-#include "vzpch.h"
-#include "Vesper/Renderer/RendererAPI.h"
+#include "mupch.h"
+#include "Renderer/RendererAPI.h"
 #include "OpenGLRendererAPI.h"
 
 #include <glad/glad.h>
 
-namespace Vesper {
+namespace Muto {
 	void OpenGLRendererAPI::Init()
 	{
 		glEnable(GL_BLEND);
@@ -14,28 +14,28 @@ namespace Vesper {
 
 	void OpenGLRendererAPI::SetViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 
 		glViewport(x, y, width, height);
 	}
 
-	void Vesper::OpenGLRendererAPI::SetClearColor(const glm::vec4& color)
+	void Muto::OpenGLRendererAPI::SetClearColor(const glm::vec4 &color)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 
 		glClearColor(color.r, color.g, color.b, color.a);
 	}
 
 	void OpenGLRendererAPI::Clear()
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
 	void OpenGLRendererAPI::DrawIndexed(const Ref<VertexArray>& vertexArray, uint32_t indexCount)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 		
 		uint32_t count = indexCount ? indexCount : vertexArray->GetIndexBuffer()->GetCount();
 		if (count == 0)

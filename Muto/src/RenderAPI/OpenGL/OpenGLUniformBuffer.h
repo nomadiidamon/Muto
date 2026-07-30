@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Vesper/Renderer/UniformBuffer.h"
+#include "Renderer/UniformBuffer.h"
 
-namespace Vesper {
+namespace Muto {
 
 	class OpenGLUniformBuffer : public UniformBuffer
 	{

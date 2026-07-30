@@ -1,17 +1,17 @@
-#include "vzpch.h"
+#include "mupch.h"
 #include "OpenGLBuffer.h"
 
 #include <glad/glad.h>
 
 
-namespace Vesper {
+namespace Muto {
 
 	// Vertex Buffer ////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////
 
 	OpenGLVertexBuffer::OpenGLVertexBuffer(uint32_t size)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 
 		glCreateBuffers(1, &m_RendererID);
 		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
@@ -20,7 +20,7 @@ namespace Vesper {
 
 	OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 
 		glCreateBuffers(1, &m_RendererID);
 		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
@@ -29,28 +29,28 @@ namespace Vesper {
 
 	OpenGLVertexBuffer::~OpenGLVertexBuffer()
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 
 		glDeleteBuffers(1, &m_RendererID);
 	}
 
 	void OpenGLVertexBuffer::Bind() const
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 
 		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 	}
 
 	void OpenGLVertexBuffer::Unbind() const
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
 	void OpenGLVertexBuffer::SetData(const void* data, uint32_t size)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 		glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
 	}
@@ -62,7 +62,7 @@ namespace Vesper {
 	OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t* indices, uint32_t count)
 		: m_Count(count)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 
 		glCreateBuffers(1, &m_RendererID);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID);
@@ -71,21 +71,21 @@ namespace Vesper {
 
 	OpenGLIndexBuffer::~OpenGLIndexBuffer()
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 
 		glDeleteBuffers(1, &m_RendererID);
 	}
 
 	void OpenGLIndexBuffer::Bind() const
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID);
 	}
 
 	void OpenGLIndexBuffer::Unbind() const
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}

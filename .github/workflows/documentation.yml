@@ -1,0 +1,136 @@
+name: Build and Deploy Documentation
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'Muto/**'
+      - 'Docs/**'
+      - 'Doxyfile'
+      - '.github/workflows/documentation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate source encoding
+        run: |
+          BAD_FILES=$(find Muto Docs -type f \( -name "*.h" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.md" \) -print0 | xargs -0 file -i | grep -v "charset=us-ascii\|charset=utf-8" || true)
+
+          if [ -n "$BAD_FILES" ]; then
+            echo "Files with non UTF-8 encoding detected:"
+            echo "$BAD_FILES"
+            exit 1
+          fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Get project metadata
+        id: project
+        shell: bash
+        run: |
+          PROJECT_NAME=$(grep "^PROJECT_NAME" Doxyfile | cut -d= -f2- | xargs)
+          PROJECT_VERSION=$(grep "^PROJECT_NUMBER" Doxyfile | cut -d= -f2- | xargs)
+
+          if [ -z "$PROJECT_NAME" ]; then
+            PROJECT_NAME="${{ github.event.repository.name }}"
+            echo "PROJECT_NAME missing from Doxyfile. Using repository name: $PROJECT_NAME"
+          fi
+
+          SAFE_PROJECT_NAME=$(echo "$PROJECT_NAME" | sed 's/[^a-zA-Z0-9._-]/_/g')
+
+          if [ -z "$PROJECT_VERSION" ]; then
+            PDF_NAME="${SAFE_PROJECT_NAME}.pdf"
+          else
+            PDF_NAME="${SAFE_PROJECT_NAME}-v${PROJECT_VERSION}.pdf"
+          fi
+
+          echo "name=$SAFE_PROJECT_NAME" >> "$GITHUB_OUTPUT"
+          echo "version=$PROJECT_VERSION" >> "$GITHUB_OUTPUT"
+          echo "pdf_name=$PDF_NAME" >> "$GITHUB_OUTPUT"
+
+          echo "Doxygen Project: $PROJECT_NAME"
+          echo "Filename Project: $SAFE_PROJECT_NAME"
+          echo "Version: $PROJECT_VERSION"
+          echo "PDF: $PDF_NAME"
+
+      - name: Install Doxygen
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen
+
+      - name: Install TeX Live
+        run: |
+          sudo apt-get install -y \
+            texlive-latex-base \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-fonts-extra \
+            texlive-font-utils \
+            texlive-extra-utils \
+            latexmk
+
+      - name: Verify LaTeX tools
+        run: |
+          pdflatex --version
+          repstopdf --version
+
+      - name: Generate Doxygen documentation
+        run: doxygen Doxyfile
+
+      - name: Check generated LaTeX encoding
+        run: |
+          grep -rP -n --include="*.tex" "[^\x00-\x7F]" Docs/latex || true
+
+      - name: Build PDF documentation
+        run: |
+          cd Docs/latex
+          make -j$(nproc)
+
+      - name: Rename PDF
+        run: |
+          mv Docs/latex/refman.pdf "Docs/latex/${{ steps.project.outputs.pdf_name }}"
+    
+      - name: Copy PDF into documentation folders
+        run: |
+          cp "Docs/latex/${{ steps.project.outputs.pdf_name }}" Docs/
+          cp "Docs/latex/${{ steps.project.outputs.pdf_name }}" Docs/html/
+
+      - name: Verify documentation output
+        run: |
+          test -f Docs/html/index.html
+          echo "Documentation generated successfully"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: Docs/html
+
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.project.outputs.pdf_name }}
+          path: Docs/latex/${{ steps.project.outputs.pdf_name }}

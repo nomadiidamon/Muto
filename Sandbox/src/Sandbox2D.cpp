@@ -1,6 +1,5 @@
-#include <Vesper/ImGui/VesperImGui.h>
-
 #include "Sandbox2D.h"
+#include "imgui.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
@@ -8,7 +7,7 @@
 Sandbox2D::Sandbox2D()
 	: Layer("Sandbox2D"), m_CameraController(1280.0f / 720.0f, true)
 {
-	VZ_PROFILE_FUNCTION();
+	MU_PROFILE_FUNCTION();
 }
 
 Sandbox2D::~Sandbox2D()
@@ -17,7 +16,7 @@ Sandbox2D::~Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
-	VZ_PROFILE_FUNCTION();
+	MU_PROFILE_FUNCTION();
 
 	m_ParticleProps.Position = { 0.0f, 0.0f, 0.0f };
 	m_ParticleProps.Velocity = { 0.0f, 0.0f, 0.0f };
@@ -30,43 +29,43 @@ void Sandbox2D::OnAttach()
 	m_ParticleProps.Rotation = 0.0f;
 	m_ParticleProps.RotationVariation = 27.0f;
 
-	m_ParticleSystem = Vesper::ParticleSystem(35000);
+	m_ParticleSystem = Muto::ParticleSystem(35000);
 	m_ParticleSystem.SetParticleProps(m_ParticleProps);
-	Vesper::RenderCommand::SetClearColor(m_ClearColor);
-	Vesper::RenderCommand::Clear();
+	Muto::RenderCommand::SetClearColor(m_ClearColor);
+	Muto::RenderCommand::Clear();
 	m_CameraController.SetZoomLevel(3.5f);
 }
 
 void Sandbox2D::OnDetach()
 {
-	VZ_PROFILE_FUNCTION();
+	MU_PROFILE_FUNCTION();
 }
 
-void Sandbox2D::OnUpdate(Vesper::Timestep ts)
+void Sandbox2D::OnUpdate(Muto::Timestep ts)
 {
-	VZ_PROFILE_FUNCTION();
+	MU_PROFILE_FUNCTION();
 
 	// Update
 	m_CameraController.OnUpdate(ts);
 
 	// Render
-	Vesper::Renderer2D::ResetStats();
+	Muto::Renderer2D::ResetStats();
 	{
-		VZ_PROFILE_SCOPE("Renderer Prep");
-		Vesper::RenderCommand::Clear();
+		MU_PROFILE_SCOPE("Renderer Prep");
+		Muto::RenderCommand::Clear();
 	}
 
 	{
-			VZ_PROFILE_SCOPE("Particle Scene");
-			Vesper::Renderer2D::BeginScene(m_CameraController.GetCamera());
+			MU_PROFILE_SCOPE("Particle Scene");
+			Muto::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-			if (Vesper::Input::IsMouseButtonPressed(Vesper::Mouse::ButtonLeft))
+			if (Muto::Input::IsMouseButtonPressed(Muto::Mouse::ButtonLeft))
 			{
 				if (m_ParticleSystem.m_TimeSinceLastEmit >= 0.016f) {
 
-					glm::vec2 mousePos = Vesper::Input::GetMousePosition();
-					auto width = Vesper::Application::Get().GetWindow().GetWidth();
-					auto height = Vesper::Application::Get().GetWindow().GetHeight();
+					glm::vec2 mousePos = Muto::Input::GetMousePosition();
+					auto width = Muto::Application::Get().GetWindow().GetWidth();
+					auto height = Muto::Application::Get().GetWindow().GetHeight();
 
 					auto bounds = m_CameraController.GetBounds();
 					m_ParticleProps.Position.x = (mousePos.x / width) * bounds.GetWidth() - bounds.GetWidth() * 0.5f + m_CameraController.GetPosition().x;
@@ -84,18 +83,18 @@ void Sandbox2D::OnUpdate(Vesper::Timestep ts)
 
 			m_ParticleSystem.OnUpdate(ts);
 			m_ParticleSystem.OnRender();
-			Vesper::Renderer2D::EndScene();	
+			Muto::Renderer2D::EndScene();	
 	}
 }
 
 void Sandbox2D::OnImGuiRender()
 {
-	VZ_PROFILE_FUNCTION();
+	MU_PROFILE_FUNCTION();
 
 	{
 		ImGui::Begin("Settings");
 		ImGui::Text("Renderer2D Stats:");
-		auto stats = Vesper::Renderer2D::GetStats();
+		auto stats = Muto::Renderer2D::GetStats();
 		ImGui::Text("\tDraw Calls: %d", stats.DrawCalls);
 		ImGui::Text("\tQuad Count: %d", stats.QuadCount);
 		ImGui::Text("\tVertex Count: %d", stats.GetTotalVertexCount());
@@ -114,22 +113,20 @@ void Sandbox2D::OnImGuiRender()
 
 		if (ImGui::ColorEdit4("Background Color", glm::value_ptr(m_ClearColor)))
 		{
-			Vesper::RenderCommand::SetClearColor(m_ClearColor);
+			Muto::RenderCommand::SetClearColor(m_ClearColor);
 		}
 		if (ImGui::Button("Clear Screen"))
 		{
-			Vesper::RenderCommand::Clear();
-			Vesper::RenderCommand::SetClearColor(m_ClearColor);
+			Muto::RenderCommand::Clear();
+			Muto::RenderCommand::SetClearColor(m_ClearColor);
 		}
 		ImGui::End();
 	}
 
-	Vesper::DisplayVesperInfo_ImGui();
-
 }
 
 
-void Sandbox2D::OnEvent(Vesper::Event& e)
+void Sandbox2D::OnEvent(Muto::Event& e)
 {
 	m_CameraController.OnEvent(e);
 }

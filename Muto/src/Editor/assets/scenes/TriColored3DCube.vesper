@@ -1,0 +1,26 @@
+Scene: Untitled Scene
+Entities:
+  - Entity: F8C575A4-9BC9-A10C-8878-C60A85F6911F
+    NameComponent: Right
+    TransformComponent:
+      Translation: [0.354999989, 0, 0.344999999]
+      Rotation: [0, 0.785398185, 0]
+      Scale: [1, 1, 1]
+    SpriteRendererComponent:
+      Color: [0.129148498, 0.0131184701, 0.33976835, 1]
+  - Entity: 0C879F07-41C3-981C-9FC5-815A159E9B9A
+    NameComponent: Top
+    TransformComponent:
+      Translation: [0, 0.5, 0]
+      Rotation: [1.57079637, -0.785398185, 0]
+      Scale: [1, 1, 1]
+    SpriteRendererComponent:
+      Color: [0.0600617044, 0.489210576, 0.915057898, 1]
+  - Entity: F7E2E9CF-3D69-44CF-0DD3-EDA75CFF1ECC
+    NameComponent: Left
+    TransformComponent:
+      Translation: [-0.349999994, 0, 0.344999999]
+      Rotation: [0, -0.785398185, 0]
+      Scale: [1, 1, 1]
+    SpriteRendererComponent:
+      Color: [0.041859854, 0.903474927, 0.494290859, 1]

@@ -1,0 +1,43 @@
+Scene: Untitled Scene
+Entities:
+  - Entity: F8C575A4-9BC9-A10C-8878-C60A85F6911F
+    NameComponent: Right
+    TransformComponent:
+      Translation: [0.354999989, 0, 0.344999999]
+      Rotation: [0, 0.785398185, 0]
+      Scale: [1, 1, 1]
+    SpriteRendererComponent:
+      Color: [0.016770767, 0.336933732, 0.482625484, 1]
+  - Entity: C820130D-9B86-12D3-8626-08310FAE7B27
+    NameComponent: Camera
+    TransformComponent:
+      Translation: [0, 1.60000002, 4.30000019]
+      Rotation: [-0.404916406, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      Camera:
+        PerspectiveFOV: 0.52359879
+        PerspectiveNear: 0.00999999978
+        PerspectiveFar: 1000
+        OrthographicSize: 10
+        OrthographicNear: -1
+        OrthographicFar: 1
+      Primary: true
+      ProjectionType: 0
+      FixedAspectRatio: false
+  - Entity: 0C879F07-41C3-981C-9FC5-815A159E9B9A
+    NameComponent: Top
+    TransformComponent:
+      Translation: [0, 0.5, 0]
+      Rotation: [1.57079637, -0.785398185, 0]
+      Scale: [1, 1, 1]
+    SpriteRendererComponent:
+      Color: [0.0354198776, 0.53647244, 0.764478743, 1]
+  - Entity: F7E2E9CF-3D69-44CF-0DD3-EDA75CFF1ECC
+    NameComponent: Left
+    TransformComponent:
+      Translation: [-0.349999994, 0, 0.344999999]
+      Rotation: [0, -0.785398185, 0]
+      Scale: [1, 1, 1]
+    SpriteRendererComponent:
+      Color: [0.041859854, 0.634012699, 0.903474927, 1]

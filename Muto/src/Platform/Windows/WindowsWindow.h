@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Vesper/App/Window.h"
+#include "App/Window.h"
 #include <GLFW/glfw3.h>
 
-#include "Vesper/Renderer/GraphicsContext.h"
+#include "Renderer/GraphicsContext.h"
 
 
-namespace Vesper {
+namespace Muto {
 
 	class WindowsWindow : public Window
 	{

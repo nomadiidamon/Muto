@@ -1,10 +1,10 @@
-#include "vzpch.h"
+#include "mupch.h"
 #include "OpenGLVertexArray.h"
 
 #include <glad/glad.h>
 
 
-namespace Vesper {
+namespace Muto {
 
 	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
 	{
@@ -22,44 +22,44 @@ namespace Vesper {
 		case ShaderDataType::Int4:		return GL_INT;
 		case ShaderDataType::Bool:		return GL_BOOL;
 		}
-		VZ_CORE_ASSERT(false, "Unknown ShaderDataType!");
+		MU_CORE_ASSERT(false, "Unknown ShaderDataType!");
 		return 0;
 	}
 
 
 	OpenGLVertexArray::OpenGLVertexArray()
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 
 		glCreateVertexArrays(1, &m_RendererID);
 	}
 
 	OpenGLVertexArray::~OpenGLVertexArray()
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 
 		glDeleteVertexArrays(1, &m_RendererID);
 	}
 
 	void OpenGLVertexArray::Bind() const
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 
 		glBindVertexArray(m_RendererID);
 	}
 
 	void OpenGLVertexArray::Unbind() const
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 
 		glBindVertexArray(0);
 	}
 
 	void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 
-		VZ_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!");
+		MU_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!");
 		glBindVertexArray(m_RendererID);
 		vertexBuffer->Bind();
 
@@ -68,7 +68,7 @@ namespace Vesper {
 		const auto& layout = vertexBuffer->GetLayout();
 		for (const auto& element : layout)
 		{
-			VZ_PROFILE_SCOPE("VertexBufferElement");
+			MU_PROFILE_SCOPE("VertexBufferElement");
 			glEnableVertexAttribArray(index);
 			glVertexAttribPointer(index, element.GetComponentCount(),
 				ShaderDataTypeToOpenGLBaseType(element.Type),
@@ -81,7 +81,7 @@ namespace Vesper {
 
 	void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 
 		glBindVertexArray(m_RendererID);
 		indexBuffer->Bind();

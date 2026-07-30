@@ -1,8 +1,8 @@
 #pragma once
-#include "Vesper/Renderer/Framebuffer.h"
+#include "Renderer/Framebuffer.h"
 
 
-namespace Vesper {
+namespace Muto {
 
 	class OpenGLFramebuffer : public Framebuffer
 	{

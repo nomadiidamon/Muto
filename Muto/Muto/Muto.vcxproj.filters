@@ -4,6 +4,39 @@
     <Filter Include="src">
       <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\App">
+      <UniqueIdentifier>{DD622FA9-4942-AE44-525A-391BBEB814A6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Core">
+      <UniqueIdentifier>{A5D31CCF-91A0-77DA-BAB9-6582A6E5AC68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Debug">
+      <UniqueIdentifier>{63A3C3B2-CF0D-7829-184C-29CF84F5557E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Editor">
+      <UniqueIdentifier>{C3F37E0D-AFAB-C05A-18B3-99B6048A5B4B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Editor\Panels">
+      <UniqueIdentifier>{B5EA9B8A-2101-9A20-6A78-2542D6CD6AA8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Events">
+      <UniqueIdentifier>{7162C20E-5D1A-045C-C621-DDB7B2F89E4C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GUI">
+      <UniqueIdentifier>{C1782FA9-2D58-AE44-3670-391BA2CE14A6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GUI\ImGui">
+      <UniqueIdentifier>{ABBA9958-177B-158F-E0B5-5E0C4C355A6B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GUI\ImGuizmo">
+      <UniqueIdentifier>{415457A4-2D4D-76F6-567F-5B7B42D75502}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Input">
+      <UniqueIdentifier>{EC4823B3-58B3-D729-A1F1-88CF0D9BB57E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ParticleSystem">
+      <UniqueIdentifier>{753920C5-611D-E11A-CA7D-DB6DB680CB9C}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
@@ -16,41 +49,14 @@
     <Filter Include="src\RenderAPI\OpenGL">
       <UniqueIdentifier>{0A872652-F615-B01B-9F34-C4168BA2C0C1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Vesper">
-      <UniqueIdentifier>{71283E35-5DE0-7F82-C6E7-58DEB2BE1A73}</UniqueIdentifier>
+    <Filter Include="src\Renderer">
+      <UniqueIdentifier>{73D1DFBF-5F34-6F64-08BA-A71AF4FB3AE7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Vesper\App">
-      <UniqueIdentifier>{21E22980-0DB0-1D86-F643-8EACE2B0F9EA}</UniqueIdentifier>
+    <Filter Include="src\Scene">
+      <UniqueIdentifier>{0A06D2B3-7670-862A-BFAE-37D02B58647F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Vesper\Core">
-      <UniqueIdentifier>{693B6785-D5C6-D449-DED7-573E4AE2304A}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Vesper\Debug">
-      <UniqueIdentifier>{A7035B32-93FC-7984-BC2E-5F09A8865990}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Vesper\Events">
-      <UniqueIdentifier>{35CB4581-A1E1-4317-EA58-CF3856AE149F}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Vesper\ImGui">
-      <UniqueIdentifier>{5B6EB932-4767-D884-7099-BD095CF1B790}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Vesper\ImGuizmo">
-      <UniqueIdentifier>{F1A99EA0-5D0B-7CAE-E678-C26052D9B26D}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Vesper\Input">
-      <UniqueIdentifier>{30A9BA32-1CA2-D984-45D4-BE09312CB990}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Vesper\ParticleSystem">
-      <UniqueIdentifier>{3926D2C7-A5E8-0552-EE98-94DE5A9ADE2F}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Vesper\Renderer">
-      <UniqueIdentifier>{377BE0E0-A3DC-BDEE-2C4A-04A198AAF4AD}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Vesper\Scene">
-      <UniqueIdentifier>{4E666933-3A5F-8885-6391-6D0A4FE96791}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Vesper\Utils">
-      <UniqueIdentifier>{91FA9633-7DF3-B585-A625-9B0A927D9591}</UniqueIdentifier>
+    <Filter Include="src\Utils">
+      <UniqueIdentifier>{4D9AFFB3-B904-B42A-0243-65D06EEC917F}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
@@ -81,6 +87,96 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\App\Application.h">
+      <Filter>src\App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\App\EntryPoint.h">
+      <Filter>src\App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\App\Layer.h">
+      <Filter>src\App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\App\LayerStack.h">
+      <Filter>src\App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\App\Window.h">
+      <Filter>src\App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Asserts.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Base.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Color.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Config.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Defines_Macros.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Log.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Math.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Math2D.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\PlatformDetection.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Random.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Timer.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Timestep.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Debug\Instrumentor.h">
+      <Filter>src\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Editor\EditorLayer.h">
+      <Filter>src\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Editor\Panels\SceneHierarchyPanel.h">
+      <Filter>src\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Events\ApplicationEvent.h">
+      <Filter>src\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Events\Event.h">
+      <Filter>src\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Events\KeyEvent.h">
+      <Filter>src\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Events\MouseEvent.h">
+      <Filter>src\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GUI\ImGui\ImGuiLayer.h">
+      <Filter>src\GUI\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Input\Input.h">
+      <Filter>src\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Input\KeyCodes.h">
+      <Filter>src\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Input\MouseButtonCodes.h">
+      <Filter>src\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Muto.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ParticleSystem\ParticleSystem.h">
+      <Filter>src\ParticleSystem</Filter>
+    </ClInclude>
     <ClInclude Include="..\src\Platform\Windows\WindowsWindow.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
@@ -111,163 +207,76 @@
     <ClInclude Include="..\src\RenderAPI\OpenGL\OpenGLVertexArray.h">
       <Filter>src\RenderAPI\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\src\Renderer\Buffer.h">
+      <Filter>src\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\App\Application.h">
-      <Filter>src\Vesper\App</Filter>
+    <ClInclude Include="..\src\Renderer\Camera.h">
+      <Filter>src\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\App\EntryPoint.h">
-      <Filter>src\Vesper\App</Filter>
+    <ClInclude Include="..\src\Renderer\EditorCamera.h">
+      <Filter>src\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\App\Layer.h">
-      <Filter>src\Vesper\App</Filter>
+    <ClInclude Include="..\src\Renderer\Framebuffer.h">
+      <Filter>src\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\App\LayerStack.h">
-      <Filter>src\Vesper\App</Filter>
+    <ClInclude Include="..\src\Renderer\GraphicsContext.h">
+      <Filter>src\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\App\Window.h">
-      <Filter>src\Vesper\App</Filter>
+    <ClInclude Include="..\src\Renderer\OrthographicCamera.h">
+      <Filter>src\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\Core\Asserts.h">
-      <Filter>src\Vesper\Core</Filter>
+    <ClInclude Include="..\src\Renderer\OrthographicCameraController.h">
+      <Filter>src\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\Core\Base.h">
-      <Filter>src\Vesper\Core</Filter>
+    <ClInclude Include="..\src\Renderer\RenderCommand.h">
+      <Filter>src\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\Core\Color.h">
-      <Filter>src\Vesper\Core</Filter>
+    <ClInclude Include="..\src\Renderer\Renderer.h">
+      <Filter>src\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\Core\Config.h">
-      <Filter>src\Vesper\Core</Filter>
+    <ClInclude Include="..\src\Renderer\Renderer2D.h">
+      <Filter>src\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\Core\Defines_Macros.h">
-      <Filter>src\Vesper\Core</Filter>
+    <ClInclude Include="..\src\Renderer\RendererAPI.h">
+      <Filter>src\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\Core\Log.h">
-      <Filter>src\Vesper\Core</Filter>
+    <ClInclude Include="..\src\Renderer\Shader.h">
+      <Filter>src\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\Core\Math.h">
-      <Filter>src\Vesper\Core</Filter>
+    <ClInclude Include="..\src\Renderer\SubTexture2D.h">
+      <Filter>src\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\Core\Math2D.h">
-      <Filter>src\Vesper\Core</Filter>
+    <ClInclude Include="..\src\Renderer\Texture.h">
+      <Filter>src\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\Core\PlatformDetection.h">
-      <Filter>src\Vesper\Core</Filter>
+    <ClInclude Include="..\src\Renderer\UniformBuffer.h">
+      <Filter>src\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\Core\Random.h">
-      <Filter>src\Vesper\Core</Filter>
+    <ClInclude Include="..\src\Renderer\VertexArray.h">
+      <Filter>src\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\Core\Timer.h">
-      <Filter>src\Vesper\Core</Filter>
+    <ClInclude Include="..\src\Scene\Components.h">
+      <Filter>src\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\Core\Timestep.h">
-      <Filter>src\Vesper\Core</Filter>
+    <ClInclude Include="..\src\Scene\Entity.h">
+      <Filter>src\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\Debug\Instrumentor.h">
-      <Filter>src\Vesper\Debug</Filter>
+    <ClInclude Include="..\src\Scene\Scene.h">
+      <Filter>src\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\Events\ApplicationEvent.h">
-      <Filter>src\Vesper\Events</Filter>
+    <ClInclude Include="..\src\Scene\SceneCamera.h">
+      <Filter>src\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\Events\Event.h">
-      <Filter>src\Vesper\Events</Filter>
+    <ClInclude Include="..\src\Scene\SceneSerializer.h">
+      <Filter>src\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\Events\KeyEvent.h">
-      <Filter>src\Vesper\Events</Filter>
+    <ClInclude Include="..\src\Scene\ScriptableEntity.h">
+      <Filter>src\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\Events\MouseEvent.h">
-      <Filter>src\Vesper\Events</Filter>
+    <ClInclude Include="..\src\Utils\PlatformUtils.h">
+      <Filter>src\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Vesper\ImGui\ImGuiLayer.h">
-      <Filter>src\Vesper\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\ImGui\VesperImGui.h">
-      <Filter>src\Vesper\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Input\Input.h">
-      <Filter>src\Vesper\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Input\KeyCodes.h">
-      <Filter>src\Vesper\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Input\MouseButtonCodes.h">
-      <Filter>src\Vesper\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\ParticleSystem\ParticleSystem.h">
-      <Filter>src\Vesper\ParticleSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Renderer\Buffer.h">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Renderer\Camera.h">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Renderer\EditorCamera.h">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Renderer\Framebuffer.h">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Renderer\GraphicsContext.h">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Renderer\OrthographicCamera.h">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Renderer\OrthographicCameraController.h">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Renderer\RenderCommand.h">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Renderer\Renderer.h">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Renderer\Renderer2D.h">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Renderer\RendererAPI.h">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Renderer\Shader.h">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Renderer\SubTexture2D.h">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Renderer\Texture.h">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Renderer\UniformBuffer.h">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Renderer\VertexArray.h">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Scene\Components.h">
-      <Filter>src\Vesper\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Scene\Entity.h">
-      <Filter>src\Vesper\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Scene\Scene.h">
-      <Filter>src\Vesper\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Scene\SceneCamera.h">
-      <Filter>src\Vesper\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Scene\SceneSerializer.h">
-      <Filter>src\Vesper\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Scene\ScriptableEntity.h">
-      <Filter>src\Vesper\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Vesper\Utils\PlatformUtils.h">
-      <Filter>src\Vesper\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\vzpch.h">
+    <ClInclude Include="..\src\mupch.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\vendor\ImGuizmo\ImGuizmo.h">
@@ -1535,6 +1544,42 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\App\Application.cpp">
+      <Filter>src\App</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\App\Layer.cpp">
+      <Filter>src\App</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\App\LayerStack.cpp">
+      <Filter>src\App</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Log.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Math.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Editor\EditorLayer.cpp">
+      <Filter>src\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Editor\MutareApp.cpp">
+      <Filter>src\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Editor\Panels\SceneHierarchyPanel.cpp">
+      <Filter>src\Editor\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GUI\ImGui\ImGuiBuild.cpp">
+      <Filter>src\GUI\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GUI\ImGui\ImGuiLayer.cpp">
+      <Filter>src\GUI\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GUI\ImGuizmo\ImGuizmoBuild.cpp">
+      <Filter>src\GUI\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ParticleSystem\ParticleSystem.cpp">
+      <Filter>src\ParticleSystem</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
@@ -1571,88 +1616,61 @@
     <ClCompile Include="..\src\RenderAPI\OpenGL\OpenGLVertexArray.cpp">
       <Filter>src\RenderAPI\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\App\Application.cpp">
-      <Filter>src\Vesper\App</Filter>
+    <ClCompile Include="..\src\Renderer\Buffer.cpp">
+      <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\App\Layer.cpp">
-      <Filter>src\Vesper\App</Filter>
+    <ClCompile Include="..\src\Renderer\EditorCamera.cpp">
+      <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\App\LayerStack.cpp">
-      <Filter>src\Vesper\App</Filter>
+    <ClCompile Include="..\src\Renderer\Framebuffer.cpp">
+      <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\Core\Log.cpp">
-      <Filter>src\Vesper\Core</Filter>
+    <ClCompile Include="..\src\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\Core\Math.cpp">
-      <Filter>src\Vesper\Core</Filter>
+    <ClCompile Include="..\src\Renderer\OrthographicCameraController.cpp">
+      <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\ImGui\ImGuiBuild.cpp">
-      <Filter>src\Vesper\ImGui</Filter>
+    <ClCompile Include="..\src\Renderer\RenderCommand.cpp">
+      <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\ImGui\ImGuiLayer.cpp">
-      <Filter>src\Vesper\ImGui</Filter>
+    <ClCompile Include="..\src\Renderer\Renderer.cpp">
+      <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\ImGuizmo\ImGuizmoBuild.cpp">
-      <Filter>src\Vesper\ImGuizmo</Filter>
+    <ClCompile Include="..\src\Renderer\Renderer2D.cpp">
+      <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\ParticleSystem\ParticleSystem.cpp">
-      <Filter>src\Vesper\ParticleSystem</Filter>
+    <ClCompile Include="..\src\Renderer\RendererAPI.cpp">
+      <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\Renderer\Buffer.cpp">
-      <Filter>src\Vesper\Renderer</Filter>
+    <ClCompile Include="..\src\Renderer\Shader.cpp">
+      <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\Renderer\EditorCamera.cpp">
-      <Filter>src\Vesper\Renderer</Filter>
+    <ClCompile Include="..\src\Renderer\SubTexture2D.cpp">
+      <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\Renderer\Framebuffer.cpp">
-      <Filter>src\Vesper\Renderer</Filter>
+    <ClCompile Include="..\src\Renderer\Texture.cpp">
+      <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\Renderer\OrthographicCamera.cpp">
-      <Filter>src\Vesper\Renderer</Filter>
+    <ClCompile Include="..\src\Renderer\UniformBuffer.cpp">
+      <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\Renderer\OrthographicCameraController.cpp">
-      <Filter>src\Vesper\Renderer</Filter>
+    <ClCompile Include="..\src\Renderer\VertexArray.cpp">
+      <Filter>src\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\Renderer\RenderCommand.cpp">
-      <Filter>src\Vesper\Renderer</Filter>
+    <ClCompile Include="..\src\Scene\Entity.cpp">
+      <Filter>src\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\Renderer\Renderer.cpp">
-      <Filter>src\Vesper\Renderer</Filter>
+    <ClCompile Include="..\src\Scene\Scene.cpp">
+      <Filter>src\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\Renderer\Renderer2D.cpp">
-      <Filter>src\Vesper\Renderer</Filter>
+    <ClCompile Include="..\src\Scene\SceneCamera.cpp">
+      <Filter>src\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\Renderer\RendererAPI.cpp">
-      <Filter>src\Vesper\Renderer</Filter>
+    <ClCompile Include="..\src\Scene\SceneSerializer.cpp">
+      <Filter>src\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Vesper\Renderer\Shader.cpp">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Vesper\Renderer\SubTexture2D.cpp">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Vesper\Renderer\Texture.cpp">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Vesper\Renderer\UniformBuffer.cpp">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Vesper\Renderer\VertexArray.cpp">
-      <Filter>src\Vesper\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Vesper\Scene\Entity.cpp">
-      <Filter>src\Vesper\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Vesper\Scene\Scene.cpp">
-      <Filter>src\Vesper\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Vesper\Scene\SceneCamera.cpp">
-      <Filter>src\Vesper\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Vesper\Scene\SceneSerializer.cpp">
-      <Filter>src\Vesper\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\vzpch.cpp">
+    <ClCompile Include="..\src\mupch.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\vendor\ImGuizmo\ImGuizmo.cpp">

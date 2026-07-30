@@ -1,14 +1,14 @@
 #pragma once
 
-#include "Vesper/Core/Base.h"
-#include "Vesper/Events/Event.h"
-#include "Vesper/Events/ApplicationEvent.h"
-#include "Vesper/Events/KeyEvent.h"
-#include "Vesper/Events/MouseEvent.h"
-#include "Vesper/App/Layer.h"
-#include "Vesper/ImGui/ImGuiLayer.h"
+#include "Core/Base.h"
+#include "Events/Event.h"
+#include "Events/ApplicationEvent.h"
+#include "Events/KeyEvent.h"
+#include "Events/MouseEvent.h"
+#include "App/Layer.h"
+#include "GUI/ImGui/ImGuiLayer.h"
 
-namespace Vesper {
+namespace Muto {
 
 	class OpenGLImGuiLayer : public ImGuiLayer
 	{

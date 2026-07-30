@@ -8,8 +8,8 @@ project "Muto"
 	targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
-	pchheader "vzpch.h"
-	pchsource "src/vzpch.cpp"
+	pchheader "mupch.h"
+	pchsource "src/mupch.cpp"
 
 	files 
 	{
@@ -62,24 +62,25 @@ project "Muto"
 
 	defines
 	{
-		"VZ_PLATFORM_WINDOWS", 
+		"MU_PLATFORM_WINDOWS", 
 		"GLFW_INCLUDE_NONE",
 		"_CRT_SECURE_NO_WARNINGS",
-		"YAML_CPP_STATIC_DEFINE"
+		"YAML_CPP_STATIC_DEFINE",
+		"MU_EDITOR_USE_DEFAULT_SCENE"
 	}
 
 	filter "configurations:Debug"
-		defines "VZ_DEBUG"
+		defines "MU_DEBUG"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
-		defines "VZ_RELEASE"
+		defines "MU_RELEASE"
 		runtime "Release"
 		optimize "on"
 
 	filter "configurations:Dist"
-		defines "VZ_DIST"
+		defines "MU_DIST"
 		runtime "Release"
 		optimize "on"
 

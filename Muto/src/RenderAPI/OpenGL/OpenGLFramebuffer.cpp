@@ -1,9 +1,9 @@
-#include "vzpch.h"
+#include "mupch.h"
 #include "OpenGLFramebuffer.h"
 
 #include <glad/glad.h>
 
-namespace Vesper {
+namespace Muto {
 
 	/// TODO: Get the actual maximum size from the GPU!
 	static const uint32_t s_MaxFramebufferSize = 8192;
@@ -47,7 +47,7 @@ namespace Vesper {
 
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthAttachment, 0);
 
-		VZ_CORE_ASSERT(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE, "Framebuffer is complete!");
+		MU_CORE_ASSERT(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE, "Framebuffer is complete!");
 
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
@@ -68,7 +68,7 @@ namespace Vesper {
 	{
 		if (width == 0 || height == 0 || width > 8192 || height > 8192)
 		{
-			VZ_CORE_WARN("Attempted to resize framebuffer to {0}, {1}", width, height);
+			MU_CORE_WARN("Attempted to resize framebuffer to {0}, {1}", width, height);
 			return;
 		}
 		m_Specification.Width = width;

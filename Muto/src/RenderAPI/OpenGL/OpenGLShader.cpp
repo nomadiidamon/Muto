@@ -1,26 +1,26 @@
-#include "vzpch.h"
+#include "mupch.h"
 #include "OpenGLShader.h"
 
 #include <glad/glad.h>
 #include <glm/gtc/type_ptr.hpp>
 
 
-namespace Vesper {
+namespace Muto {
 
 	static GLenum ShaderTypeFromString(const std::string& type)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 		if (type == "vertex")
 			return GL_VERTEX_SHADER;
 		if (type == "fragment" || type == "pixel")
 			return GL_FRAGMENT_SHADER;
-		VZ_CORE_ASSERT(false, "Unknown shader type!");
+		MU_CORE_ASSERT(false, "Unknown shader type!");
 		return 0;
 	}
 
 	OpenGLShader::OpenGLShader(const std::string& filepath)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 		std::string shaderSrc = ReadFile(filepath);
 		auto shaderSources = PreProcess(shaderSrc);
 		Compile(shaderSources);
@@ -36,7 +36,7 @@ namespace Vesper {
 	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
 		: m_Name(name)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 		std::unordered_map<GLenum, std::string> sources;
 		sources[GL_VERTEX_SHADER] = vertexSrc;
 		sources[GL_FRAGMENT_SHADER] = fragmentSrc;
@@ -45,13 +45,13 @@ namespace Vesper {
 
 	OpenGLShader::~OpenGLShader()
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 		glDeleteProgram(m_RendererID);
 	}
 
 	std::string OpenGLShader::ReadFile(const std::string& filepath)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 		std::string result;
 		std::ifstream in(filepath, std::ios::in | std::ios::binary);
 		if (in)
@@ -63,15 +63,15 @@ namespace Vesper {
 		}
 		else
 		{
-			VZ_CORE_ERROR("Could not open file '{0}'", filepath);
-			VZ_CORE_ASSERT(false, "Failed to open file!");
+			MU_CORE_ERROR("Could not open file '{0}'", filepath);
+			MU_CORE_ASSERT(false, "Failed to open file!");
 		}
 		return result;
 	}
 
 	std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::string& source)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 		std::unordered_map<GLenum, std::string> shaderSources;
 
 		const char* typeToken = "#type";
@@ -80,14 +80,13 @@ namespace Vesper {
 		while (pos != std::string::npos)
 		{
 			size_t eol = source.find_first_of("\r\n", pos); // End of shader type declaration line
-			VZ_CORE_ASSERT(eol != std::string::npos, "Syntax error");
+			MU_CORE_ASSERT(eol != std::string::npos, "Syntax error");
 
 			size_t begin = pos + typeTokenLength + 1; // Start of shader type name (after "#type " keyword)
 			std::string type = source.substr(begin, eol - begin);
-			VZ_CORE_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
-
+			MU_CORE_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
 			size_t nextLinePos = source.find_first_not_of("\r\n", eol); // Start of shader code after shader type declaration line
-			VZ_CORE_ASSERT(nextLinePos != std::string::npos, "Syntax error");
+			MU_CORE_ASSERT(nextLinePos != std::string::npos, "Syntax error");
 
 			pos = source.find(typeToken, nextLinePos); // Start of next shader type declaration line
 			shaderSources[ShaderTypeFromString(type)] = (pos == std::string::npos) ? source.substr(nextLinePos) : source.substr(nextLinePos, pos - nextLinePos);
@@ -97,12 +96,11 @@ namespace Vesper {
 
 	void OpenGLShader::Compile(std::unordered_map<GLenum, std::string>& shaderSources)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 		GLuint program = glCreateProgram();
 
 		std::array<GLenum, 2> shaderIDs;
-		VZ_CORE_ASSERT(shaderSources.size() <= shaderIDs.size(), "We only support 2 shaders for now!");
-
+		MU_CORE_ASSERT(shaderSources.size() <= shaderIDs.size(), "We only support 2 shaders for now!");
 		int glShaderIDIndex = 0;
 
 		for (auto& kv : shaderSources)
@@ -129,8 +127,8 @@ namespace Vesper {
 
 				glDeleteShader(shader);
 
-				VZ_CORE_ERROR("{0}", infoLog.data());
-				VZ_CORE_ASSERT(false, "Shader compilation failure!");
+				MU_CORE_ERROR("{0}", infoLog.data());
+				MU_CORE_ASSERT(false, "Shader compilation failure!");
 				break;
 			}
 			glAttachShader(program, shader);
@@ -158,8 +156,8 @@ namespace Vesper {
 			for (auto id : shaderIDs)
 				glDeleteShader(id);
 
-			VZ_CORE_ERROR("{0}", infoLog.data());
-			VZ_CORE_ASSERT(false, "Shader link failure!");
+			MU_CORE_ERROR("{0}", infoLog.data());
+			MU_CORE_ASSERT(false, "Shader link failure!");
 			return;
 		}
 
@@ -174,51 +172,51 @@ namespace Vesper {
 
 	void OpenGLShader::Bind() const
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 		glUseProgram(m_RendererID);
 	}
 
 	void OpenGLShader::Unbind() const
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 		glUseProgram(0);
 	}
 
 
 	void OpenGLShader::SetFloat4(const std::string& name, const glm::vec4& value)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 		UploadUniformFloat4(name, value);
 	}
 
 	void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& value)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 		UploadUniformFloat3(name, value);
 	}
 
 	void OpenGLShader::SetFloat(const std::string& name, float value)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 		UploadUniformFloat(name, value);
 	}
 
 	void OpenGLShader::SetInt(const std::string& name, int value)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 		UploadUniformInt(name, value);
 	}
 
 	void OpenGLShader::SetIntArray(const std::string& name, int* values, uint32_t count)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 		glUniform1iv(location, count, values);
 	}
 
 	void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& value)
 	{
-		VZ_PROFILE_FUNCTION();
+		MU_PROFILE_FUNCTION();
 		UploadUniformMat4(name, value);
 	}
 

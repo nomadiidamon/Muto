@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Vesper/Renderer/Buffer.h"
+#include "Renderer/Buffer.h"
 
 
-namespace Vesper {
+namespace Muto {
 	
 	class OpenGLVertexBuffer : public VertexBuffer
 	{

@@ -1,10 +1,10 @@
-#include "vzpch.h"
-#include "Vesper/Input/Input.h"
+#include "mupch.h"
+#include "Input/Input.h"
 
-#include "Vesper/App/Application.h"
+#include "App/Application.h"
 #include <GLFW/glfw3.h>
 
-namespace Vesper {
+namespace Muto {
 
 	bool Input::IsKeyPressed(int keycode)
 	{

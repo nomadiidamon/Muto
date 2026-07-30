@@ -1,16 +1,16 @@
-#include "vzpch.h"
+#include "mupch.h"
 /// @file WindowsPlatformUtils.cpp
 /// @author Damon S. Green II
 /// @brief Windows-specific implementations of file dialogs and file system utilities.
 /// @todo Move GLFW expose native win32 define to platform detection
-#include "Vesper/Utils/PlatformUtils.h"
-#include "Vesper/App/Application.h"
+#include "Utils/PlatformUtils.h"
+#include "App/Application.h"
 #include <commdlg.h>
 #include <GLFW/glfw3.h>
 #define GLFW_EXPOSE_NATIVE_WIN32
 #include <GLFW/glfw3native.h>
 
-namespace Vesper {
+namespace Muto {
 	
 	std::string FileDialogs::OpenFile(const char* filter) {
 
@@ -18,7 +18,7 @@ namespace Vesper {
 		CHAR szFile[260] = { 0 };
 		ZeroMemory(&ofn, sizeof(ofn));
 		ofn.lStructSize = sizeof(ofn);
-		ofn.hwndOwner = glfwGetWin32Window((GLFWwindow*)Vesper::Application::Get().GetWindow().GetNativeWindow());
+		ofn.hwndOwner = glfwGetWin32Window((GLFWwindow*)Application::Get().GetWindow().GetNativeWindow());
 		ofn.lpstrFile = szFile;
 		ofn.nMaxFile = sizeof(szFile);
 		ofn.lpstrFilter = filter;
@@ -87,14 +87,14 @@ namespace Vesper {
 
 
 		// Log Directories for Debugging
-		VZ_CORE_TRACE("FileSystem initialized");
-		VZ_CORE_TRACE("FileSystem Directories:");
-		VZ_CORE_TRACE("Root Engine Directory : " + m_RootEngineDirectory);
-		VZ_CORE_TRACE("Root Editor Directory : " + m_RootEditorDirectory);
-		VZ_CORE_TRACE("Resources Directory   : " + m_ResourcesDirectory);
-		VZ_CORE_TRACE("Assets Directory      : " + m_AssetsDirectory);
-		VZ_CORE_TRACE("Projects Directory    : " + m_ProjectsDirectory);
-		VZ_CORE_TRACE("Current Project Directory : " + m_CurrentProjectDirectory);
+		MU_CORE_TRACE("FileSystem initialized");
+		MU_CORE_TRACE("FileSystem Directories:");
+		MU_CORE_TRACE("Root Engine Directory : " + m_RootEngineDirectory);
+		MU_CORE_TRACE("Root Editor Directory : " + m_RootEditorDirectory);
+		MU_CORE_TRACE("Resources Directory   : " + m_ResourcesDirectory);
+		MU_CORE_TRACE("Assets Directory      : " + m_AssetsDirectory);
+		MU_CORE_TRACE("Projects Directory    : " + m_ProjectsDirectory);
+		MU_CORE_TRACE("Current Project Directory : " + m_CurrentProjectDirectory);
 	}
 
 	std::string FileSystem::GetCurrentWorkingDirectory() {

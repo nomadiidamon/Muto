@@ -1,0 +1,26 @@
+#!/bin/sh
+
+HOOK_DIR="$(dirname "$0")/../../scripts/hooks/pre-commit.d"
+
+echo "Running pre-commit hooks..."
+echo
+
+for script in "$HOOK_DIR"/*; do
+    if [ -f "$script" ]; then
+        echo "-> $(basename "$script")"
+
+        "$script"
+        STATUS=$?
+
+        if [ $STATUS -ne 0 ]; then
+            echo
+            echo "Pre-commit hook failed: $(basename "$script")"
+            exit $STATUS
+        fi
+    fi
+done
+
+echo
+echo "All pre-commit hooks passed."
+
+exit 0

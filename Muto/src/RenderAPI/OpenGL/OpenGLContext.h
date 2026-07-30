@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Vesper/Renderer/GraphicsContext.h"
+#include "Renderer/GraphicsContext.h"
 
 struct GLFWwindow;
 
-namespace Vesper {
+namespace Muto {
 	class OpenGLContext : public GraphicsContext
 	{
 	public:

@@ -1,7 +1,7 @@
 #pragma once
-#include "Vesper/Renderer/VertexArray.h"
+#include "Renderer/VertexArray.h"
 
-namespace Vesper {
+namespace Muto {
 
 	class OpenGLVertexArray : public VertexArray {
 	public:

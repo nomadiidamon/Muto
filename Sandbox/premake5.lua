@@ -19,6 +19,7 @@ project "Sandbox"
 		"%{wks.location}/Muto/vendor/spdlog/include",
 		"%{wks.location}/Muto/src",
 		"%{wks.location}/Muto/vendor",
+		"%{wks.location}/Muto/vendor/imgui",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.entt}"
 	}
@@ -36,20 +37,20 @@ project "Sandbox"
 
 		defines
 		{
-			"VZ_PLATFORM_WINDOWS"
+			"MU_PLATFORM_WINDOWS"
 		}
 
 		filter "configurations:Debug"
-			defines "VZ_DEBUG"
+			defines "MU_DEBUG"
 			runtime "Debug"
 			symbols "on"
 
 		filter "configurations:Release"
-			defines "VZ_RELEASE"
+			defines "MU_RELEASE"
 			runtime "Release"
 			optimize "on"
 
 		filter "configurations:Dist"
-			defines "VZ_DIST"
+			defines "MU_DIST"
 			runtime "Release"
 			optimize "on"

@@ -1,9 +1,9 @@
-#include "vzpch.h"
+#include "mupch.h"
 #include "OpenGLUniformBuffer.h"
 
 #include <glad/glad.h>
 
-namespace Vesper {
+namespace Muto {
 
 	OpenGLUniformBuffer::OpenGLUniformBuffer(uint32_t size, uint32_t binding)
 	{

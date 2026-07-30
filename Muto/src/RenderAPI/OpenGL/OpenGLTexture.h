@@ -1,9 +1,9 @@
 #pragma once
-#include "Vesper/Renderer/Texture.h"
+#include "Renderer/Texture.h"
 
 #include <glad/glad.h>
 
-namespace Vesper {
+namespace Muto {
 
 	class OpenGLTexture2D : public Texture2D
 	{

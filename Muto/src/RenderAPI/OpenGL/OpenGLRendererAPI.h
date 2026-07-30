@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Vesper/Renderer/RendererAPI.h"
+#include "Renderer/RendererAPI.h"
 #include <glm/glm.hpp>
 #include <memory>
 
-namespace Vesper {
+namespace Muto {
 
 	/// @class OpenGLRendererAPI
 	/// @brief An implementation of the RendererAPI for OpenGL.

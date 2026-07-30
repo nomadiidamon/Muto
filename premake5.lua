@@ -3,7 +3,7 @@ include "./vendor/premake/premake_customization/solution_items.lua"
 workspace "Muto"
 	architecture "x64"
 
-	startproject "Mutare"
+	startproject "Sandbox"
 
 	configurations 
 	{ 
@@ -37,12 +37,6 @@ group ""
 group "Core"
 	include "Muto"
 group ""
-
-
-group "Tools"
-	include "Mutare"
-group ""
-
 
 group "Misc"
 	include "Sandbox"

@@ -1,14 +1,14 @@
-#include "vzpch.h"
+#include "mupch.h"
 #include "OpenGLImGuiLayer.h"
-#include "Vesper/ImGui/ImGuiLayer.h"
+#include "GUI/ImGui/ImGuiLayer.h"
 
 #include "imgui.h"
 
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_opengl3.h"
 
-#include "Vesper/App/Application.h"
-#include "Vesper/App/Layer.h"
+#include "App/Application.h"
+#include "App/Layer.h"
 
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
@@ -16,7 +16,7 @@
 #include "ImGuizmo.h"
 
 
-namespace  Vesper {
+namespace Muto {
 	OpenGLImGuiLayer::OpenGLImGuiLayer() : ImGuiLayer()
 	{
 	}
