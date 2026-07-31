@@ -47,7 +47,7 @@ Troubleshooting:
 ## Documentation
 Documentation for this project was auto generated using Doxygen version 1.16.1 and can be found at the following: 
 
-	https://nomadiidamon.github.io/Muto/
+https://nomadiidamon.github.io/Muto/
 
 ## Contributing
 For full contributing guidlines view [Contributing Guidelines](CONTRIBUTING.md).
@@ -78,7 +78,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+https://www.apache.org/licenses/LICENSE-2.0
 
 
 #### Modified File Header for Licensing
