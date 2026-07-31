@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'Muto/**'
+      - 'Muto/src/**'
       - 'Docs/**'
       - 'Doxyfile'
       - '.github/workflows/documentation.yml'
