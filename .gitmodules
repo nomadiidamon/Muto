@@ -1,18 +1,18 @@
-[submodule "Vesper/vendor/spdlog"]
-	path = Vesper/vendor/spdlog
+[submodule "Muto/vendor/spdlog"]
+	path = Muto/vendor/spdlog
 	url = https://github.com/gabime/spdlog
-[submodule "Vesper/vendor/GLFW"]
-	path = Vesper/vendor/GLFW
+[submodule "Muto/vendor/GLFW"]
+	path = Muto/vendor/GLFW
 	url = https://github.com/nomadiidamon/glfw
-[submodule "Vesper/vendor/imgui"]
-	path = Vesper/vendor/imgui
+[submodule "Muto/vendor/imgui"]
+	path = Muto/vendor/imgui
 	url = https://github.com/nomadiidamon/imgui
-[submodule "Vesper/vendor/glm"]
-	path = Vesper/vendor/glm
+[submodule "Muto/vendor/glm"]
+	path = Muto/vendor/glm
 	url = https://github.com/g-truc/glm
-[submodule "Vesper/vendor/yaml-cpp"]
-	path = Vesper/vendor/yaml-cpp
+[submodule "Muto/vendor/yaml-cpp"]
+	path = Muto/vendor/yaml-cpp
 	url = https://github.com/thecherno/yaml-cpp
-[submodule "Vesper/vendor/ImGuizmo"]
-	path = Vesper/vendor/ImGuizmo
+[submodule "Muto/vendor/ImGuizmo"]
+	path = Muto/vendor/ImGuizmo
 	url = https://github.com/nomadiidamon/ImGuizmo
