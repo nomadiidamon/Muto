@@ -78,10 +78,12 @@ Muto::Application* Muto::CreateApplication() {
 ```
 
 ## Muto's Author: Damon S. Green II (nomad_ii_damon)
-For more information about the author, please visit www.damonsgreen2.com
+For more information about the author, please visit 
+
+	<www.damonsgreen2.com>
 
 ## Contributing
-Please open issues or pull requests. 
+For full contributing guidlines view [Contributing Guidelines](CONTRIBUTING.md).
 
 ## Licensing
 > **License status:** Proprietary (subject to change)
