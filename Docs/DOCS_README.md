@@ -80,7 +80,7 @@ Muto::Application* Muto::CreateApplication() {
 ## Muto's Author: Damon S. Green II (nomad_ii_damon)
 For more information about the author, please visit 
 
-	<www.damonsgreen2.com>
+	www.damonsgreen2.com
 
 ## Contributing
 For full contributing guidlines view [Contributing Guidelines](CONTRIBUTING.md).
@@ -111,7 +111,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    [Apache](http://www.apache.org/licenses/LICENSE-2.0)
+    http://www.apache.org/licenses/LICENSE-2.0
 
 #### Modified File Header for Licensing
 Based on Hazel Engine (Apache 2.0)
