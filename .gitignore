@@ -7,3 +7,7 @@ bin-int/
 *.user
 *.sln
 *.vcxproj
+*.filters
+*Runtime.json
+*Shutdown.json
+*Startup.json

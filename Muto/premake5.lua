@@ -17,6 +17,7 @@ project "Muto"
 		"src/**.cpp",
 		"vendor/stb_image/**.h",
 		"vendor/stb_image/**.cpp",
+		"vendor/Gateware/Gateware.h",
 		"vendor/glm/glm/**.hpp",
 		"vendor/glm/glm/**.inl",
 
@@ -34,6 +35,7 @@ project "Muto"
 	{
 		"src",
 		"vendor/spdlog/include",
+		"%{IncludeDir.Gateware}",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",

@@ -12,3 +12,7 @@
 
 #define MU_DEFAULT_TEXTURE Texture2D::Create("../../Resources/Textures/Checkerboard.png")
 
+
+/// Gateware config
+#define GATEWARE_ENABLE_CORE
+#define GATEWARE_ENABLE_SYSTEM

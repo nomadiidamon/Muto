@@ -39,8 +39,8 @@ namespace Muto {
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoTaskBarIcons; // Disable Platform Windows task bar icons
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoMerge;      // Disable Platform Windows merging into host window
 
-		io.Fonts->AddFontFromFileTTF("../../Mutare/assets/fonts/RedHatMono/static/RedHatMono-Bold.ttf", 18.0f);
-		io.FontDefault = io.Fonts->AddFontFromFileTTF("../../Mutare/assets/fonts/RedHatMono/static/RedHatMono-Light.ttf", 18.0f);
+		io.Fonts->AddFontFromFileTTF((Muto::Application::Get().ResolvePath("fonts/RedHatMono/static/RedHatMono-Bold.ttf", Muto::PathResolveMode::AssetsDirectory)).c_str(), 18.0f);
+		io.FontDefault = io.Fonts->AddFontFromFileTTF((Muto::Application::Get().ResolvePath("fonts/RedHatMono/static/RedHatMono-Bold.ttf", Muto::PathResolveMode::AssetsDirectory)).c_str(), 18.0f);
 
 
 		ImGui::StyleColorsDark();
@@ -56,7 +56,7 @@ namespace Muto {
 		SetDarkThemeColors();
 
 
-		/// TODO: Remove to openGL specific
+		/// @todo: Remove to openGL specific ImGui Implementation
 		{
 			Application& app = Application::Get();
 			GLFWwindow* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
@@ -70,7 +70,7 @@ namespace Muto {
 	{
 		MU_PROFILE_FUNCTION();
 
-		/// TODO: Remove to openGL specific
+		/// @todo: Remove to openGL specific ImGui Implementation
 		{
 			ImGui_ImplOpenGL3_Shutdown();
 			ImGui_ImplGlfw_Shutdown();
@@ -148,8 +148,5 @@ namespace Muto {
 		colors[ImGuiCol_TitleBg] = ImVec4{ 0.1f, 0.105f, 0.11f, 1.0f };
 		colors[ImGuiCol_TitleBgActive] = ImVec4{ 0.1f, 0.105f, 0.11f, 1.0f };
 		colors[ImGuiCol_TitleBgCollapsed] = ImVec4{ 0.1f, 0.105f, 0.11f, 1.0f };
-
-
-
 	}
 }

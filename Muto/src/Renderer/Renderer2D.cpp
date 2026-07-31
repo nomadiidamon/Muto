@@ -1,4 +1,5 @@
 #include "mupch.h"
+#include "App/Application.h"
 #include "Renderer2D.h"
 
 #include "UniformBuffer.h"
@@ -107,7 +108,7 @@ namespace Muto {
 			samplers[i] = i;
 
 
-		s_Data.TextureShader = Shader::Create("../../../Muto/src/Editor/assets/shaders/Texture.glsl");
+		s_Data.TextureShader = Shader::Create(Muto::Application::Get().ResolvePath("shaders/Texture.glsl", Muto::PathResolveMode::AssetsDirectory));
 		s_Data.TextureShader->Bind();
 		s_Data.TextureShader->SetIntArray("u_Textures", samplers, s_Data.MaxTextureSlots);
 

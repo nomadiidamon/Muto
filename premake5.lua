@@ -16,6 +16,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["entt"] = "%{wks.location}/Muto/vendor/entt/include"
+IncludeDir["Gateware"] = "%{wks.location}/Muto/vendor/Gateware"
 IncludeDir["Glad"] = "%{wks.location}/Muto/vendor/Glad/include"
 IncludeDir["GLFW"] = "%{wks.location}/Muto/vendor/GLFW/include"
 IncludeDir["glm"] = "%{wks.location}/Muto/vendor/glm"

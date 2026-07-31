@@ -9,36 +9,38 @@
 
 #include "Sandbox2D.h"
 
-class ExampleLayer : public Muto::Layer {
+class ExampleLayer : public Muto::Layer
+{
 public:
-  ExampleLayer() : Layer("Example"), m_CameraController(1280.0f / 720.0f) {
-    /// Traingle Setup
-    /// @todo Abstract triangle rendering into Renderer2D (Similar to QuadVertex
-    /// struct) (will use this shape for boids)
-    {
-      m_TriangleVertexArray = Muto::VertexArray::Create();
+	ExampleLayer() : Layer("Example"), m_CameraController(1280.0f / 720.0f)
+	{
+		/// Traingle Setup
+		/// @todo Abstract triangle rendering into Renderer2D (Similar to QuadVertex
+		/// struct) (will use this shape for boids)
+		{
+			m_TriangleVertexArray = Muto::VertexArray::Create();
 
-      float triangleVertices[3 * 7] = {
-          -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f, 0.5f, -0.5f, 0.0f, 0.2f,
-          0.3f,  0.8f,  1.0f, 0.0f, 0.5f, 0.0f, 0.8f, 0.8f, 0.2f,  1.0f,
-      };
+			float triangleVertices[3 * 7] = {
+				-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f, 0.5f, -0.5f, 0.0f, 0.2f,
+				0.3f,  0.8f,  1.0f, 0.0f, 0.5f, 0.0f, 0.8f, 0.8f, 0.2f,  1.0f,
+			};
 
-      Muto::Ref<Muto::VertexBuffer> vertexBuffer;
-      vertexBuffer = (Muto::VertexBuffer::Create(triangleVertices,
-                                                 sizeof(triangleVertices)));
-      Muto::BufferLayout layout = {{Muto::ShaderDataType::Float3, "a_Position"},
-                                   {Muto::ShaderDataType::Float4, "a_Color"}
+			Muto::Ref<Muto::VertexBuffer> vertexBuffer;
+			vertexBuffer = (Muto::VertexBuffer::Create(triangleVertices,
+							sizeof(triangleVertices)));
+			Muto::BufferLayout layout = { {Muto::ShaderDataType::Float3, "a_Position"},
+										 {Muto::ShaderDataType::Float4, "a_Color"}
 
-      };
-      vertexBuffer->SetLayout(layout);
-      m_TriangleVertexArray->AddVertexBuffer(vertexBuffer);
-      uint32_t indices[3] = {0, 1, 2};
-      Muto::Ref<Muto::IndexBuffer> indexBuffer;
-      indexBuffer = (Muto::IndexBuffer::Create(indices, sizeof(indices) /
-                                                            sizeof(uint32_t)));
-      m_TriangleVertexArray->SetIndexBuffer(indexBuffer);
+			};
+			vertexBuffer->SetLayout(layout);
+			m_TriangleVertexArray->AddVertexBuffer(vertexBuffer);
+			uint32_t indices[3] = { 0, 1, 2 };
+			Muto::Ref<Muto::IndexBuffer> indexBuffer;
+			indexBuffer = (Muto::IndexBuffer::Create(indices, sizeof(indices) /
+						   sizeof(uint32_t)));
+			m_TriangleVertexArray->SetIndexBuffer(indexBuffer);
 
-      std::string triangleVertexSrc = R"(
+			std::string triangleVertexSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
@@ -58,7 +60,7 @@ public:
 			}
 			)";
 
-      std::string triangleFragmentSrc = R"(
+			std::string triangleFragmentSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
@@ -73,29 +75,29 @@ public:
 			}
 			)";
 
-      m_Shader = Muto::Shader::Create("VertexPosColor", triangleVertexSrc,
-                                      triangleFragmentSrc);
-    }
+			m_Shader = Muto::Shader::Create("VertexPosColor", triangleVertexSrc,
+											triangleFragmentSrc);
+		}
 
-    m_SquareVA = Muto::VertexArray::Create();
-    float squareVertices[5 * 4] = {-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.5f, -0.5f,
-                                   0.0f,  1.0f,  0.0f, 0.5f, 0.5f, 0.0f, 1.0f,
-                                   1.0f,  -0.5f, 0.5f, 0.0f, 0.0f, 1.0f};
+		m_SquareVA = Muto::VertexArray::Create();
+		float squareVertices[5 * 4] = { -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.5f, -0.5f,
+									   0.0f,  1.0f,  0.0f, 0.5f, 0.5f, 0.0f, 1.0f,
+									   1.0f,  -0.5f, 0.5f, 0.0f, 0.0f, 1.0f };
 
-    Muto::Ref<Muto::VertexBuffer> squareVB;
-    squareVB =
-        (Muto::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
-    squareVB->SetLayout({{Muto::ShaderDataType::Float3, "a_Position"},
-                         {Muto::ShaderDataType::Float2, "a_TexCoord"}});
-    m_SquareVA->AddVertexBuffer(squareVB);
+		Muto::Ref<Muto::VertexBuffer> squareVB;
+		squareVB =
+			(Muto::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		squareVB->SetLayout({ {Muto::ShaderDataType::Float3, "a_Position"},
+							 {Muto::ShaderDataType::Float2, "a_TexCoord"} });
+		m_SquareVA->AddVertexBuffer(squareVB);
 
-    uint32_t squareIndices[6] = {0, 1, 2, 2, 3, 0};
-    Muto::Ref<Muto::IndexBuffer> squareIB;
-    squareIB = (Muto::IndexBuffer::Create(squareIndices, sizeof(squareIndices) /
-                                                             sizeof(uint32_t)));
-    m_SquareVA->SetIndexBuffer(squareIB);
+		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
+		Muto::Ref<Muto::IndexBuffer> squareIB;
+		squareIB = (Muto::IndexBuffer::Create(squareIndices, sizeof(squareIndices) /
+					sizeof(uint32_t)));
+		m_SquareVA->SetIndexBuffer(squareIB);
 
-    std::string blueShaderVertexSrc = R"(
+		std::string blueShaderVertexSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
@@ -112,7 +114,7 @@ public:
 			}
 		)";
 
-    std::string flatColorShaderFragmentSrc = R"(
+		std::string flatColorShaderFragmentSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
@@ -127,57 +129,82 @@ public:
 			}
 		)";
 
-    m_FlatColorShader = (Muto::Shader::Create("FlatColor", blueShaderVertexSrc,
-                                              flatColorShaderFragmentSrc));
-  }
+		m_FlatColorShader = (Muto::Shader::Create("FlatColor", blueShaderVertexSrc,
+							 flatColorShaderFragmentSrc));
+	}
 
-  void OnUpdate(Muto::Timestep ts) override {
-    // Update
-    m_CameraController.OnUpdate(ts);
+	void OnUpdate(Muto::Timestep ts) override
+	{
+		// Update
+		m_CameraController.OnUpdate(ts);
 
-    // Render
-    Muto::RenderCommand::SetClearColor({0.1f, 0.1f, 0.1f, 1.0f});
-    Muto::RenderCommand::Clear();
+		// Render
+		Muto::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
+		Muto::RenderCommand::Clear();
 
-    Muto::Renderer::BeginScene(m_CameraController.GetCamera());
-    // Squares
-    static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
-    std::dynamic_pointer_cast<Muto::OpenGLShader>(m_FlatColorShader)->Bind();
-    std::dynamic_pointer_cast<Muto::OpenGLShader>(m_FlatColorShader)
-        ->UploadUniformFloat3("u_Color", m_SquareColor);
-    for (int y = 0; y < 20; y++) {
-      for (int x = 0; x < 20; x++) {
-        glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
-        glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-        Muto::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
-      }
-    }
-    // Triangle
-    Muto::Renderer::Submit(m_Shader, m_TriangleVertexArray);
-    Muto::Renderer::EndScene();
-  }
+		Muto::Renderer::BeginScene(m_CameraController.GetCamera());
+		// Squares
+		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+		std::dynamic_pointer_cast<Muto::OpenGLShader>(m_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<Muto::OpenGLShader>(m_FlatColorShader)
+			->UploadUniformFloat3("u_Color", m_SquareColor);
+		for (int y = 0; y < 20; y++)
+		{
+			for (int x = 0; x < 20; x++)
+			{
+				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
+				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+				Muto::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
+			}
+		}
+		// Triangle
+		Muto::Renderer::Submit(m_Shader, m_TriangleVertexArray);
+		Muto::Renderer::EndScene();
+	}
 
-  void OnImGuiRender() override {}
+	void OnImGuiRender() override {}
 
-  void OnEvent(Muto::Event &e) override { m_CameraController.OnEvent(e); }
+	void OnEvent(Muto::Event& e) override { m_CameraController.OnEvent(e); }
 
 private:
-  Muto::Ref<Muto::Shader> m_Shader;
-  Muto::Ref<Muto::VertexArray> m_TriangleVertexArray;
-  Muto::Ref<Muto::Shader> m_FlatColorShader;
-  Muto::Ref<Muto::VertexArray> m_SquareVA;
-  Muto::OrthographicCameraController m_CameraController;
-  glm::vec3 m_SquareColor = {0.2f, 0.3f, 0.8f};
+	Muto::Ref<Muto::Shader> m_Shader;
+	Muto::Ref<Muto::VertexArray> m_TriangleVertexArray;
+	Muto::Ref<Muto::Shader> m_FlatColorShader;
+	Muto::Ref<Muto::VertexArray> m_SquareVA;
+	Muto::OrthographicCameraController m_CameraController;
+	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
 
-class SandboxApp : public Muto::Application {
+class SandboxApp : public Muto::Application
+{
 public:
-  SandboxApp() {
+	SandboxApp()
+	{
+		PushLayer(new Sandbox2D());
+	}
 
-    PushLayer(new Sandbox2D());
-    // PushLayer(new ExampleLayer());
-  }
-  ~SandboxApp() {}
+	SandboxApp(Muto::ApplicationSettings settings) : Muto::Application(settings)
+	{
+		PushLayer(new Sandbox2D());
+	}
+
+	~SandboxApp() {}
 };
 
-Muto::Application *Muto::CreateApplication() { return new SandboxApp(); }
+Muto::Application* Muto::CreateApplication()
+{
+	ApplicationSettings settings;
+	settings.ApplicationName = "Sandbox";
+	//settings.WorkingDirectory = "";
+	settings.ProjectDirectory = "";
+	settings.AssetsDirectory = "D:/Muto/Muto/src/Editor/assets";
+	settings.RendererAPI = RendererAPI::API::OpenGL;
+	settings.Width = 1600;
+	settings.Height = 900;
+	settings.Mode = WindowMode::Windowed;
+	settings.EnableImGui = true;
+	settings.EnableVSync = true;
+
+	//return new SandboxApp(); 
+	return new SandboxApp(settings);
+}

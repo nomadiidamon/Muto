@@ -21,7 +21,9 @@ project "Sandbox"
 		"%{wks.location}/Muto/vendor",
 		"%{wks.location}/Muto/vendor/imgui",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.Gateware}"
+
 	}
 
 	links
