@@ -4,6 +4,7 @@ bin/
 bin-int/
 Muto/Muto
 Sandbox/Sandbox
+Makefile
 
 # Files
 *.user

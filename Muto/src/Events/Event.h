@@ -10,22 +10,22 @@ namespace Muto {
 	/// @brief Enumeration of event types.
 	enum class EventType
 	{
-		None = 0,
-		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
-		AppTick, AppUpdate, AppRender,
-		KeyPressed, KeyReleased, KeyTyped,
-		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
+		ET_None = 0,
+		ET_WindowClose, ET_WindowResize, ET_WindowFocus, ET_WindowLostFocus, ET_WindowMoved,
+		ET_AppTick, ET_AppUpdate, ET_AppRender,
+		ET_KeyPressed, ET_KeyReleased, ET_KeyTyped,
+		ET_MouseButtonPressed, ET_MouseButtonReleased, ET_MouseMoved, ET_MouseScrolled
 	};
 
 	/// @brief Enumeration of event categories.
 	enum EventCategory
 	{
-		None = 0,
-		EventCategoryApplication	= BIT(0),
-		EventCategoryInput			= BIT(1),
-		EventCategoryKeyboard		= BIT(2),
-		EventCategoryMouse			= BIT(3),
-		EventCategoryMouseButton	= BIT(4)
+		EC_None = 0,
+		EC_Application	= BIT(0),
+		EC_Input		= BIT(1),
+		EC_Keyboard		= BIT(2),
+		EC_Mouse		= BIT(3),
+		EC_MouseButton	= BIT(4)
 	};
 
 

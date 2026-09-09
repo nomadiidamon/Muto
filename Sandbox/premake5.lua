@@ -29,30 +29,43 @@ project "Sandbox"
 	links
 	{
 		"Muto",
+		"GLFW",
+		"Glad",
+		"ImGui",
+		"yaml-cpp",
 	}
 
 	filter "system:windows"
 		systemversion "latest"
 
-    buildoptions { "/utf-8" }
-
+		buildoptions { "/utf-8" }
+		links { "opengl32.lib" }
 
 		defines
 		{
 			"MU_PLATFORM_WINDOWS"
 		}
 
-		filter "configurations:Debug"
-			defines "MU_DEBUG"
-			runtime "Debug"
-			symbols "on"
+	filter "system:linux"
+		pic "On"
+		links { "GL" }
 
-		filter "configurations:Release"
-			defines "MU_RELEASE"
-			runtime "Release"
-			optimize "on"
+		defines
+		{
+			"MU_PLATFORM_LINUX"
+		}
 
-		filter "configurations:Dist"
-			defines "MU_DIST"
-			runtime "Release"
-			optimize "on"
+	filter "configurations:Debug"
+		defines "MU_DEBUG"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		defines "MU_RELEASE"
+		runtime "Release"
+		optimize "on"
+
+	filter "configurations:Dist"
+		defines "MU_DIST"
+		runtime "Release"
+		optimize "on"

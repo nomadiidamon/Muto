@@ -32,6 +32,11 @@ group "Dependencies"
 	include "Muto/vendor/imgui"
 	include "Muto/vendor/yaml-cpp"
 
+	project "yaml-cpp"
+		filter "system:linux"
+			buildoptions { "-include", "cstdint" }
+		filter {}
+
 group ""
 
 

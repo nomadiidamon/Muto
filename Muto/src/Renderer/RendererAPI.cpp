@@ -2,5 +2,5 @@
 #include "RendererAPI.h"
 
 namespace Muto {
-	RendererAPI::API RendererAPI::s_API = RendererAPI::API::OpenGL;
+	RenderAPI::API RenderAPI::s_API = RenderAPI::API::RAPI_OpenGL;
 }

@@ -53,10 +53,10 @@ namespace Muto {
 		m_Window->SetVSync(settings.EnableVSync);
 
 		m_Settings = CreateScope<ApplicationSettings>(settings);
-		if (m_Settings->RendererAPI == RendererAPI::API::None)
+		if (m_Settings->RendererAPIType == RenderAPI::API::RAPI_None)
 		{
 			m_Settings->EnableImGui = false;
-			MU_CORE_WARN("RendererAPI is set to None, disabling ImGui.");
+			MU_CORE_WARN("RenderAPI is set to None, disabling ImGui.");
 		}
 		if (m_Settings->EnableImGui)
 		{

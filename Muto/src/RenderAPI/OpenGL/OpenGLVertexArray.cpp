@@ -10,17 +10,17 @@ namespace Muto {
 	{
 		switch (type)
 		{
-		case ShaderDataType::Float:		return GL_FLOAT;
-		case ShaderDataType::Float2:	return GL_FLOAT;
-		case ShaderDataType::Float3:	return GL_FLOAT;
-		case ShaderDataType::Float4:	return GL_FLOAT;
-		case ShaderDataType::Mat3:		return GL_FLOAT;
-		case ShaderDataType::Mat4:		return GL_FLOAT;
-		case ShaderDataType::Int:		return GL_INT;
-		case ShaderDataType::Int2:		return GL_INT;
-		case ShaderDataType::Int3:		return GL_INT;
-		case ShaderDataType::Int4:		return GL_INT;
-		case ShaderDataType::Bool:		return GL_BOOL;
+		case ShaderDataType::SDT_Float:		return GL_FLOAT;
+		case ShaderDataType::SDT_Float2:	return GL_FLOAT;
+		case ShaderDataType::SDT_Float3:	return GL_FLOAT;
+		case ShaderDataType::SDT_Float4:	return GL_FLOAT;
+		case ShaderDataType::SDT_Mat3:		return GL_FLOAT;
+		case ShaderDataType::SDT_Mat4:		return GL_FLOAT;
+		case ShaderDataType::SDT_Int:		return GL_INT;
+		case ShaderDataType::SDT_Int2:		return GL_INT;
+		case ShaderDataType::SDT_Int3:		return GL_INT;
+		case ShaderDataType::SDT_Int4:		return GL_INT;
+		case ShaderDataType::SDT_Bool:		return GL_BOOL;
 		}
 		MU_CORE_ASSERT(false, "Unknown ShaderDataType!");
 		return 0;

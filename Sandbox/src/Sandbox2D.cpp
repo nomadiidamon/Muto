@@ -60,7 +60,7 @@ void Sandbox2D::OnUpdate(Muto::Timestep ts)
 			MU_PROFILE_SCOPE("Particle Scene");
 			Muto::Renderer2D::BeginScene(m_CameraController.GetCamera());
 
-			if (Muto::Input::IsMouseButtonPressed(Muto::Mouse::ButtonLeft))
+			if (Muto::Input::IsMouseButtonPressed(Muto::Mouse::MBC_ButtonLeft))
 			{
 				if (m_ParticleSystem.m_TimeSinceLastEmit >= 0.016f) {
 

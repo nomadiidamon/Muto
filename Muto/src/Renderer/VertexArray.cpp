@@ -8,10 +8,10 @@ namespace Muto {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::API::None:		MU_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:		return CreateRef<OpenGLVertexArray>();
+		case RenderAPI::API::RAPI_None:		MU_CORE_ASSERT(false, "RenderAPI::None is currently not supported!"); return nullptr;
+		case RenderAPI::API::RAPI_OpenGL:		return CreateRef<OpenGLVertexArray>();
 		}
-		MU_CORE_ASSERT(false, "Unknown RendererAPI!");
+		MU_CORE_ASSERT(false, "Unknown RenderAPI!");
 		return nullptr;
 	}
 }

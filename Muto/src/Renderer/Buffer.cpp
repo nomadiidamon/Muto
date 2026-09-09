@@ -12,10 +12,10 @@ namespace Muto {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::API::None:		MU_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:		return CreateRef<OpenGLVertexBuffer>(size);
+		case RenderAPI::API::RAPI_None:		MU_CORE_ASSERT(false, "RenderAPI::None is currently not supported!"); return nullptr;
+		case RenderAPI::API::RAPI_OpenGL:		return CreateRef<OpenGLVertexBuffer>(size);
 		}
-		MU_CORE_ASSERT(false, "Unknown RendererAPI!");
+		MU_CORE_ASSERT(false, "Unknown RenderAPI!");
 		return nullptr;
 	}
 
@@ -23,10 +23,10 @@ namespace Muto {
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::API::None:		MU_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case RendererAPI::API::OpenGL:		return CreateRef<OpenGLVertexBuffer>(vertices, size);
+			case RenderAPI::API::RAPI_None:		MU_CORE_ASSERT(false, "RenderAPI::None is currently not supported!"); return nullptr;
+			case RenderAPI::API::RAPI_OpenGL:		return CreateRef<OpenGLVertexBuffer>(vertices, size);
 		}
-		MU_CORE_ASSERT(false, "Unknown RendererAPI!");
+		MU_CORE_ASSERT(false, "Unknown RenderAPI!");
 		return nullptr;
 	}
 
@@ -35,10 +35,10 @@ namespace Muto {
 
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::API::None:		MU_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case RendererAPI::API::OpenGL:		return CreateRef<OpenGLIndexBuffer>(indices, count);
+			case RenderAPI::API::RAPI_None:		MU_CORE_ASSERT(false, "RenderAPI::None is currently not supported!"); return nullptr;
+			case RenderAPI::API::RAPI_OpenGL:		return CreateRef<OpenGLIndexBuffer>(indices, count);
 		}
-		MU_CORE_ASSERT(false, "Unknown RendererAPI!");
+		MU_CORE_ASSERT(false, "Unknown RenderAPI!");
 		return nullptr;
 	}
 

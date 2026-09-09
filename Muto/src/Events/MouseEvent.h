@@ -38,7 +38,7 @@ namespace Muto {
 		}
 
 		EVENT_CLASS_TYPE(MouseMoved)
-			EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
+			EVENT_CLASS_CATEGORY(EC_Mouse | EC_Input)
 	private:
 		float m_MouseX, m_MouseY;
 	};
@@ -70,7 +70,7 @@ namespace Muto {
 		}
 
 		EVENT_CLASS_TYPE(MouseScrolled)
-			EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
+			EVENT_CLASS_CATEGORY(EC_Mouse | EC_Input)
 	private:
 		float m_XOffset, m_YOffset;
 	};
@@ -83,7 +83,7 @@ namespace Muto {
 		/// @brief Get the mouse button associated with the event.
 		inline int GetMouseButton() const { return m_Button; }
 
-		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
+		EVENT_CLASS_CATEGORY(EC_Mouse | EC_Input)
 	protected:
 		/// @brief Construct a MouseButtonEvent with the specified button.
 		///

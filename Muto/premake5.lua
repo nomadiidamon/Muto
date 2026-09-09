@@ -29,6 +29,8 @@ project "Muto"
 		flags { "NoPCH" }
 	filter "files:vendor/ImGuizmo/ImGuizmo.cpp"
 		flags { "NoPCH" }
+	filter "files:vendor/stb_image/stb_image.cpp"
+		flags { "NoPCH" }
 	filter {}
 
 	includedirs
@@ -52,24 +54,38 @@ project "Muto"
 		"GLFW",
 		"Glad",
 		"ImGui",
-		"opengl32.lib",
 		"yaml-cpp"
 	}
 
 	filter "system:windows"
 		systemversion "latest"
 
-    buildoptions { "/utf-8" }
+		buildoptions { "/utf-8" }
 
+		links { "opengl32.lib" }
 
-	defines
-	{
-		"MU_PLATFORM_WINDOWS", 
-		"GLFW_INCLUDE_NONE",
-		"_CRT_SECURE_NO_WARNINGS",
-		"YAML_CPP_STATIC_DEFINE",
-		"MU_EDITOR_USE_DEFAULT_SCENE"
-	}
+		defines
+		{
+			"MU_PLATFORM_WINDOWS",
+			"GLFW_INCLUDE_NONE",
+			"_CRT_SECURE_NO_WARNINGS",
+			"YAML_CPP_STATIC_DEFINE",
+			"MU_EDITOR_USE_DEFAULT_SCENE"
+		}
+
+	filter "system:linux"
+		pic "On"
+
+		links { "GL" }
+		removefiles { "src/Platform/Windows/WindowsPlatformUtils.cpp" }
+
+		defines
+		{
+			"MU_PLATFORM_LINUX",
+			"GLFW_INCLUDE_NONE",
+			"YAML_CPP_STATIC_DEFINE",
+			"MU_EDITOR_USE_DEFAULT_SCENE"
+		}
 
 	filter "configurations:Debug"
 		defines "MU_DEBUG"

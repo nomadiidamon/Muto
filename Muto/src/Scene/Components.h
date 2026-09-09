@@ -268,12 +268,12 @@ namespace Muto {
 
 	struct ParticleSystemComponent
 	{
-		ParticleSystem ParticleSystem;
+		ParticleSystem System;
 
 		ParticleSystemComponent() = default;
 		ParticleSystemComponent(const ParticleSystemComponent&) = default;
 		ParticleSystemComponent(const int maxParticles)
-			: ParticleSystem(maxParticles) {
+			: System(maxParticles) {
 		}
 
 	};

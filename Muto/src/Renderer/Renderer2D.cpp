@@ -70,11 +70,11 @@ namespace Muto {
 		s_Data.QuadVertexBuffer = VertexBuffer::Create(s_Data.MaxVertices * sizeof(QuadVertex));
 
 		s_Data.QuadVertexBuffer->SetLayout({
-			{ ShaderDataType::Float3, "a_Position"  },
-			{ ShaderDataType::Float4, "a_Color"     },
-			{ ShaderDataType::Float2, "a_TexCoord"   },
-			{ ShaderDataType::Float,  "a_TexIndex"   },
-			{ ShaderDataType::Float,  "a_TilingFactor"}
+			{ ShaderDataType::SDT_Float3, "a_Position"  },
+			{ ShaderDataType::SDT_Float4, "a_Color"     },
+			{ ShaderDataType::SDT_Float2, "a_TexCoord"   },
+			{ ShaderDataType::SDT_Float,  "a_TexIndex"   },
+			{ ShaderDataType::SDT_Float,  "a_TilingFactor"},
 			});
 		s_Data.QuadVertexArray->AddVertexBuffer(s_Data.QuadVertexBuffer);
 
@@ -179,7 +179,7 @@ namespace Muto {
 	}
 	
 	/// @brief Resets the batch for a new set of draw calls.
-	/// @todo Remove the OpenGL specific code from here
+	/// @todo Remove the OpenGL-specific code from here
 	void Renderer2D::Flush()
 	{
 		MU_PROFILE_FUNCTION();
