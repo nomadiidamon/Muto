@@ -2,6 +2,9 @@
 #include "Application.h"
 #include "Renderer/Renderer.h"
 #include "Input/Input.h"
+#include "ResourceManager.h"
+
+#include <filesystem>
 
 /// @file Application.cpp
 /// @author Damon S. Green II
@@ -204,15 +207,13 @@ namespace Muto {
 			return std::string();
 		}
 
-		// Check if the relativePath is already an absolute path
-		if (path[0] == '/' || path[0] == '\\' || (path.size() > 1 && path[1] == ':'))
+		if (Muto::IsAbsolutePath(path))
 		{
 			MU_CORE_WARN("ResolvePath_WorkingDirectory called with an absolute path: {0}", path);
-			return path;
+			return Muto::NormalizePath(path);
 		}
 
-		resultPath = m_Settings->WorkingDirectory + "/" + path;
-
+		resultPath = Muto::JoinPaths(m_Settings->WorkingDirectory, path);
 		return resultPath;
 	}
 
@@ -232,15 +233,13 @@ namespace Muto {
 			return std::string();
 		}
 
-		// Check if the path is already an absolute path
-		if (path[0] == '/' || path[0] == '\\' || (path.size() > 1 && path[1] == ':'))
+		if (Muto::IsAbsolutePath(path))
 		{
 			MU_CORE_WARN("ResolvePath_ProjectDirectory called with an absolute path: {0}", path);
-			return path;
+			return Muto::NormalizePath(path);
 		}
 
-		resultPath = m_Settings->ProjectDirectory + "/" + path;
-
+		resultPath = Muto::JoinPaths(m_Settings->ProjectDirectory, path);
 		return resultPath;
 	}
 
@@ -260,15 +259,13 @@ namespace Muto {
 			return std::string();
 		}
 
-		// Check if the relativePath is already an absolute path
-		if (path[0] == '/' || path[0] == '\\' || (path.size() > 1 && path[1] == ':'))
+		if (Muto::IsAbsolutePath(path))
 		{
 			MU_CORE_WARN("ResolvePath_AssetsDirectory called with an absolute path: {0}", path);
-			return path;
+			return Muto::NormalizePath(path);
 		}
 
-		resultPath = m_Settings->AssetsDirectory + "/" + path;
-
+		resultPath = Muto::JoinPaths(m_Settings->AssetsDirectory, path);
 		return resultPath;
 	}
 
@@ -315,30 +312,104 @@ namespace Muto {
 		}
 		else
 		{
-			m_Settings->WorkingDirectory = currentWorkingDirectory;
+			m_Settings->WorkingDirectory = Muto::NormalizePath(currentWorkingDirectory);
 			MU_CORE_INFO("Current working directory: {0}", m_Settings->WorkingDirectory);
 		}
 
+
+		/// Ensure working directory exists
+		std::filesystem::path workDir = m_Settings->WorkingDirectory;
+		if (!std::filesystem::exists(workDir))
+		{
+			result = MutoResult(MU_RETURN::FAILURE, "Working directory does not exist.");
+			MU_CORE_ERROR("Working directory does not exist: {0}", m_Settings->WorkingDirectory);
+			return result;
+		}
+		else
+		{
+			MU_CORE_INFO("Working directory exists: {0}", m_Settings->WorkingDirectory);
+		}
+		if (!m_Settings->ProjectDirectory.empty() && !Muto::IsAbsolutePath(m_Settings->ProjectDirectory))
+		{
+			m_Settings->ProjectDirectory = Muto::JoinPaths(m_Settings->WorkingDirectory, m_Settings->ProjectDirectory);
+			MU_CORE_INFO("Resolved relative Project directory to: {0}", m_Settings->ProjectDirectory);
+		}
+
+
+		/// Ensure project directory exists
 		if (!m_Settings->WorkingDirectory.empty())
 		{
-			m_Settings->ProjectDirectory = m_Settings->WorkingDirectory + "/Project";
-			MU_CORE_INFO("Project directory is: {0}", m_Settings->ProjectDirectory);
+			if (m_Settings->ProjectDirectory.empty())
+			{
+				m_Settings->ProjectDirectory = Muto::JoinPaths(m_Settings->WorkingDirectory, "Project");
+				MU_CORE_INFO("Project directory is: {0}", m_Settings->ProjectDirectory);
+			}
+
+			std::filesystem::path projDir = Muto::NormalizePath(m_Settings->ProjectDirectory);
+			if (!std::filesystem::exists(projDir))
+			{
+				if (std::filesystem::create_directories(projDir))
+				{
+					MU_CORE_INFO("Project directory created: {0}", m_Settings->ProjectDirectory);
+				}
+				else
+				{
+					result = MutoResult(MU_RETURN::FAILURE, "Failed to create project directory.");
+					MU_CORE_ERROR("Failed to create project directory: {0}", m_Settings->ProjectDirectory);
+					return result;
+				}
+			}
+			else
+			{
+				MU_CORE_INFO("Project directory already exists: {0}", m_Settings->ProjectDirectory);
+			}
 		}
 		else
 		{
 			MU_CORE_WARN("Working directory is empty, cannot create project directory path.");
 		}
-
-		if (!m_Settings->ProjectDirectory.empty())
+		if (!m_Settings->AssetsDirectory.empty() && !Muto::IsAbsolutePath(m_Settings->AssetsDirectory))
 		{
-			m_Settings->AssetsDirectory = m_Settings->ProjectDirectory + "/Assets";
-			MU_CORE_INFO("Assets directory is: {0}", m_Settings->AssetsDirectory);
-		}
-		else
-		{
-			MU_CORE_WARN("Project directory is empty, cannot create assets directory path.");
+			m_Settings->AssetsDirectory = Muto::JoinPaths(m_Settings->WorkingDirectory, m_Settings->AssetsDirectory);
+			MU_CORE_INFO("Resolved relative Assets directory to: {0}", m_Settings->AssetsDirectory);
 		}
 
+
+		/// Ensure assets directory exists
+		if (m_Settings->AssetsDirectory.empty())
+		{
+			if (!m_Settings->ProjectDirectory.empty())
+			{
+				m_Settings->AssetsDirectory = Muto::JoinPaths(m_Settings->ProjectDirectory, "Assets");
+				MU_CORE_INFO("Assets directory is: {0}", m_Settings->AssetsDirectory);
+			}
+			else
+			{
+				MU_CORE_WARN("Project directory is empty, cannot create assets directory path.");
+			}
+		}
+
+		if (!m_Settings->AssetsDirectory.empty())
+		{
+			std::filesystem::path assetsDir = Muto::NormalizePath(m_Settings->AssetsDirectory);
+			if (!std::filesystem::exists(assetsDir))
+			{
+				if (std::filesystem::create_directories(assetsDir))
+				{
+					MU_CORE_INFO("Assets directory created: {0}", m_Settings->AssetsDirectory);
+				}
+				else
+				{
+					result = MutoResult(MU_RETURN::FAILURE, "Failed to create assets directory.");
+					MU_CORE_ERROR("Failed to create assets directory: {0}", m_Settings->AssetsDirectory);
+					return result;
+				}
+			}
+			else
+			{
+				MU_CORE_INFO("Assets directory already exists: {0}", m_Settings->AssetsDirectory);
+			}
+		}
 		return result;
 	}
 
@@ -363,13 +434,13 @@ namespace Muto {
 			}
 			else
 			{
-				settings.WorkingDirectory = currentWorkingDirectory;
+				settings.WorkingDirectory = Muto::NormalizePath(currentWorkingDirectory);
 				MU_CORE_INFO("Current working directory: {0}", settings.WorkingDirectory);
 			}
 		}
 		else
 		{
-			if (GW::GReturn::SUCCESS != settings.FileSystem.SetCurrentWorkingDirectory(settings.WorkingDirectory.c_str()))
+			if (GW::GReturn::SUCCESS != settings.FileSystem.SetCurrentWorkingDirectory(Muto::NormalizePath(settings.WorkingDirectory).c_str()))
 			{
 				result = MutoResult(MU_RETURN::FAILURE, "Failed to set current working directory.");
 				MU_CORE_ASSERT(false, "Failed to set current working directory.");
@@ -381,9 +452,26 @@ namespace Muto {
 			}
 		}
 
+		/// Ensure working directory exists
+		std::filesystem::path workDir = settings.WorkingDirectory;
+		if (!std::filesystem::exists(workDir))
+		{
+			result = MutoResult(MU_RETURN::FAILURE, "Working directory does not exist.");
+			MU_CORE_ERROR("Working directory does not exist: {0}", settings.WorkingDirectory);
+			return result;
+		}
+		else
+		{
+			MU_CORE_INFO("Working directory exists: {0}", settings.WorkingDirectory);
+		}
+		if (!settings.ProjectDirectory.empty() && !Muto::IsAbsolutePath(settings.ProjectDirectory))
+		{
+			settings.ProjectDirectory = Muto::JoinPaths(settings.WorkingDirectory, settings.ProjectDirectory);
+			MU_CORE_INFO("Resolved relative Project directory to: {0}", settings.ProjectDirectory);
+		}
 		if (settings.ProjectDirectory.empty())
 		{
-			settings.ProjectDirectory = settings.WorkingDirectory + "/Project";
+			settings.ProjectDirectory = Muto::JoinPaths(settings.WorkingDirectory, "Project");
 			MU_CORE_INFO("Project Directory is: {0}", settings.ProjectDirectory);
 		}
 		else
@@ -391,14 +479,58 @@ namespace Muto {
 			MU_CORE_INFO("Project Directory is: {0}", settings.ProjectDirectory);
 		}
 
+		/// Ensure project directory exists
+		std::filesystem::path projDir = settings.ProjectDirectory;
+		if (!std::filesystem::exists(projDir))
+		{
+			if (std::filesystem::create_directories(projDir))
+			{
+				MU_CORE_INFO("Project directory created: {0}", settings.ProjectDirectory);
+			}
+			else
+			{
+				result = MutoResult(MU_RETURN::FAILURE, "Failed to create project directory.");
+				MU_CORE_ERROR("Failed to create project directory: {0}", settings.ProjectDirectory);
+				return result;
+			}
+		}
+		else
+		{
+			MU_CORE_INFO("Project directory already exists: {0}", settings.ProjectDirectory);
+		}
+		if (!settings.AssetsDirectory.empty() && !Muto::IsAbsolutePath(settings.AssetsDirectory))
+		{
+			settings.AssetsDirectory = Muto::JoinPaths(settings.WorkingDirectory, settings.AssetsDirectory);
+			MU_CORE_INFO("Resolved relative Assets directory to: {0}", settings.AssetsDirectory);
+		}
+
 		if (settings.AssetsDirectory.empty())
 		{
-			settings.AssetsDirectory = settings.ProjectDirectory + "/Assets";
-			MU_CORE_INFO("Assets Directory is: {0}", settings.AssetsDirectory);
+			settings.AssetsDirectory = Muto::JoinPaths(settings.ProjectDirectory, "Assets");
+			MU_CORE_INFO("Assets Directory was empty. It defaulted to: {0}", settings.AssetsDirectory);
 		}
 		else
 		{
 			MU_CORE_INFO("Assets Directory is: {0}", settings.AssetsDirectory);
+		}
+		/// Ensure assets directory exists
+		std::filesystem::path assetsDir = settings.AssetsDirectory;
+		if (!std::filesystem::exists(assetsDir))
+		{
+			if (std::filesystem::create_directories(assetsDir))
+			{
+				MU_CORE_INFO("Assets directory created: {0}", settings.AssetsDirectory);
+			}
+			else
+			{
+				result = MutoResult(MU_RETURN::FAILURE, "Failed to create assets directory.");
+				MU_CORE_ERROR("Failed to create assets directory: {0}", settings.AssetsDirectory);
+				return result;
+			}
+		}
+		else
+		{
+			MU_CORE_INFO("Assets directory already exists: {0}", settings.AssetsDirectory);
 		}
 
 		return result;

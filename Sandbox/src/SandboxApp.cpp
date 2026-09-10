@@ -10,6 +10,9 @@
 #include "Sandbox2D.h"
 #include "Editor/EditorLayer.h"
 
+#include <filesystem>
+#include "App/ResourceManager.h"
+
 class ExampleLayer : public Muto::Layer
 {
 public:
@@ -198,9 +201,11 @@ Muto::Application* Muto::CreateApplication()
 {
 	ApplicationSettings settings;
 	settings.ApplicationName = "Sandbox";
+
 	//settings.WorkingDirectory = "";
 	settings.ProjectDirectory = "";
-	settings.AssetsDirectory = "Muto/src/Editor/assets";
+	settings.AssetsDirectory = ("Muto/src/Editor/assets");
+
 	settings.RendererAPIType = RenderAPI::API::RAPI_OpenGL;
 	settings.Width = 1600;
 	settings.Height = 900;

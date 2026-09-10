@@ -3,8 +3,19 @@
 /// @author Damon S. Green II
 /// @brief Provides assertion macros for debugging and error handling.
 
-#include <csignal>
+#include "PlatformDetection.h"
 
+/// Platform debug break
+#ifdef MU_PLATFORM_WINDOWS
+	#include <intrin.h>
+	#define MU_DEBUGBREAK() __debugbreak()
+#elif defined(MU_PLATFORM_LINUX)
+	#include <csignal>
+	#define MU_DEBUGBREAK() raise(SIGTRAP)
+#else
+	#include <csignal>
+	#define MU_DEBUGBREAK() raise(SIGTRAP)
+#endif
 
 /// ASSERT MACROS
 #ifdef MU_DEBUG
@@ -13,9 +24,9 @@
 
 #ifdef MU_ENABLE_ASSERTS
 /// @brief Asserts that the given condition is true. If not, logs an error message and triggers a breakpoint.
-#define MU_ASSERT(x, ...) { if(!(x)) { MU_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); raise(SIGTRAP); } }
+#define MU_ASSERT(x, ...) { if(!(x)) { MU_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); MU_DEBUGBREAK(); } }
 /// @brief Asserts that the given condition is true in core code. If not, logs an error message and triggers a breakpoint.
-#define MU_CORE_ASSERT(x, ...) { if(!(x)) { MU_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); raise(SIGTRAP); } }
+#define MU_CORE_ASSERT(x, ...) { if(!(x)) { MU_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); MU_DEBUGBREAK(); } }
 #else
 #define MU_ASSERT(x, ...)
 #define MU_CORE_ASSERT(x, ...)

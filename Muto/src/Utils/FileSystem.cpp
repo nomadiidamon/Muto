@@ -44,5 +44,4 @@ namespace Muto {
 	{
 		return std::filesystem::path(path).parent_path().string();
 	}
-
 }

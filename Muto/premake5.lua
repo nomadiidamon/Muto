@@ -59,7 +59,7 @@ project "Muto"
 
 	filter "system:windows"
 		systemversion "latest"
-
+		removefiles { "src/Platform/Linux/LinuxPlatformUtils.cpp" }
 		buildoptions { "/utf-8" }
 
 		links { "opengl32.lib" }

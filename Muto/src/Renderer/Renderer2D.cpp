@@ -1,5 +1,6 @@
 #include "mupch.h"
 #include "App/Application.h"
+#include "App/ResourceManager.h"
 #include "Renderer2D.h"
 
 #include "UniformBuffer.h"
@@ -9,6 +10,7 @@
 
 #include <glad/glad.h>
 #include <glm/gtc/matrix_transform.hpp>
+
 
 namespace Muto {
 
@@ -108,7 +110,10 @@ namespace Muto {
 			samplers[i] = i;
 
 
-		s_Data.TextureShader = Shader::Create(Muto::Application::Get().ResolvePath("shaders/Texture.glsl", Muto::PathResolveMode::AssetsDirectory));
+		std::string shaderPath = Muto::Application::Get().ResolvePath(Muto::JoinPaths("shaders", "Texture.glsl"), Muto::PathResolveMode::AssetsDirectory);
+		MU_CORE_INFO("Attempting to load shader from: {0}", shaderPath);
+
+		s_Data.TextureShader = Shader::Create(shaderPath);
 		s_Data.TextureShader->Bind();
 		s_Data.TextureShader->SetIntArray("u_Textures", samplers, s_Data.MaxTextureSlots);
 
