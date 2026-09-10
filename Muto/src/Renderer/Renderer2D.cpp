@@ -1,5 +1,6 @@
 #include "mupch.h"
 #include "App/Application.h"
+#include "App/ResourceManager.h"
 #include "Renderer2D.h"
 
 #include "UniformBuffer.h"
@@ -9,6 +10,7 @@
 
 #include <glad/glad.h>
 #include <glm/gtc/matrix_transform.hpp>
+
 
 namespace Muto {
 
@@ -70,11 +72,11 @@ namespace Muto {
 		s_Data.QuadVertexBuffer = VertexBuffer::Create(s_Data.MaxVertices * sizeof(QuadVertex));
 
 		s_Data.QuadVertexBuffer->SetLayout({
-			{ ShaderDataType::Float3, "a_Position"  },
-			{ ShaderDataType::Float4, "a_Color"     },
-			{ ShaderDataType::Float2, "a_TexCoord"   },
-			{ ShaderDataType::Float,  "a_TexIndex"   },
-			{ ShaderDataType::Float,  "a_TilingFactor"}
+			{ ShaderDataType::SDT_Float3, "a_Position"  },
+			{ ShaderDataType::SDT_Float4, "a_Color"     },
+			{ ShaderDataType::SDT_Float2, "a_TexCoord"   },
+			{ ShaderDataType::SDT_Float,  "a_TexIndex"   },
+			{ ShaderDataType::SDT_Float,  "a_TilingFactor"},
 			});
 		s_Data.QuadVertexArray->AddVertexBuffer(s_Data.QuadVertexBuffer);
 
@@ -108,7 +110,10 @@ namespace Muto {
 			samplers[i] = i;
 
 
-		s_Data.TextureShader = Shader::Create(Muto::Application::Get().ResolvePath("shaders/Texture.glsl", Muto::PathResolveMode::AssetsDirectory));
+		std::string shaderPath = Muto::Application::Get().ResolvePath(Muto::JoinPaths("shaders", "Texture.glsl"), Muto::PathResolveMode::AssetsDirectory);
+		MU_CORE_INFO("Attempting to load shader from: {0}", shaderPath);
+
+		s_Data.TextureShader = Shader::Create(shaderPath);
 		s_Data.TextureShader->Bind();
 		s_Data.TextureShader->SetIntArray("u_Textures", samplers, s_Data.MaxTextureSlots);
 
@@ -179,7 +184,7 @@ namespace Muto {
 	}
 	
 	/// @brief Resets the batch for a new set of draw calls.
-	/// @todo Remove the OpenGL specific code from here
+	/// @todo Remove the OpenGL-specific code from here
 	void Renderer2D::Flush()
 	{
 		MU_PROFILE_FUNCTION();

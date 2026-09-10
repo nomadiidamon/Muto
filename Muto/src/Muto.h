@@ -32,6 +32,7 @@
 
 #include "ParticleSystem/ParticleSystem.h"		
 
+
 // -- Scene - Entity - Component - System -------------------
 #include "Scene/Entity.h"
 #include "Scene/ScriptableEntity.h"
@@ -62,3 +63,6 @@
 #include "Renderer/EditorCamera.h"
 #include "Renderer/OrthographicCamera.h"
 #include "Renderer/OrthographicCameraController.h"
+
+
+#include "Editor/EditorLayer.h"

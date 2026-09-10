@@ -8,6 +8,10 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "Sandbox2D.h"
+#include "Editor/EditorLayer.h"
+
+#include <filesystem>
+#include "App/ResourceManager.h"
 
 class ExampleLayer : public Muto::Layer
 {
@@ -28,8 +32,8 @@ public:
 			Muto::Ref<Muto::VertexBuffer> vertexBuffer;
 			vertexBuffer = (Muto::VertexBuffer::Create(triangleVertices,
 							sizeof(triangleVertices)));
-			Muto::BufferLayout layout = { {Muto::ShaderDataType::Float3, "a_Position"},
-										 {Muto::ShaderDataType::Float4, "a_Color"}
+			Muto::BufferLayout layout = { {Muto::ShaderDataType::SDT_Float3, "a_Position"},
+										 {Muto::ShaderDataType::SDT_Float4, "a_Color"}
 
 			};
 			vertexBuffer->SetLayout(layout);
@@ -87,8 +91,8 @@ public:
 		Muto::Ref<Muto::VertexBuffer> squareVB;
 		squareVB =
 			(Muto::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
-		squareVB->SetLayout({ {Muto::ShaderDataType::Float3, "a_Position"},
-							 {Muto::ShaderDataType::Float2, "a_TexCoord"} });
+		 squareVB->SetLayout({ {Muto::ShaderDataType::SDT_Float3, "a_Position"},
+								 {Muto::ShaderDataType::SDT_Float2, "a_TexCoord"} });
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
@@ -180,12 +184,14 @@ class SandboxApp : public Muto::Application
 public:
 	SandboxApp()
 	{
-		PushLayer(new Sandbox2D());
+		//PushLayer(new Sandbox2D());
+		PushLayer(new Muto::EditorLayer());
 	}
 
 	SandboxApp(Muto::ApplicationSettings settings) : Muto::Application(settings)
 	{
-		PushLayer(new Sandbox2D());
+		//PushLayer(new Sandbox2D());
+		PushLayer(new Muto::EditorLayer());
 	}
 
 	~SandboxApp() {}
@@ -195,10 +201,12 @@ Muto::Application* Muto::CreateApplication()
 {
 	ApplicationSettings settings;
 	settings.ApplicationName = "Sandbox";
+
 	//settings.WorkingDirectory = "";
 	settings.ProjectDirectory = "";
-	settings.AssetsDirectory = "D:/Muto/Muto/src/Editor/assets";
-	settings.RendererAPI = RendererAPI::API::OpenGL;
+	settings.AssetsDirectory = ("Muto/src/Editor/assets");
+
+	settings.RendererAPIType = RenderAPI::API::RAPI_OpenGL;
 	settings.Width = 1600;
 	settings.Height = 900;
 	settings.Mode = WindowMode::Windowed;

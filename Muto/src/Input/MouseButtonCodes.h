@@ -6,29 +6,29 @@
 namespace Muto {
 
 	/// @brief Alias for mouse button code type.
-	using MouseCode = uint8_t;
+	using MouseButtonCodes = uint8_t;
 
 	/// @namespace Muto::Mouse
 	/// @brief Namespace for mouse button codes.
 	namespace Mouse {
 
 		/// @brief Enumeration of mouse button codes.
-		enum : MouseCode
+		enum MouseButtonCodes
 		{
 			// From glfw3.h
-			Button0 = 0,
-			Button1 = 1,
-			Button2 = 2,
-			Button3 = 3,
-			Button4 = 4,
-			Button5 = 5,
-			Button6 = 6,
-			Button7 = 7,
+			MBC_Button0 = 0,
+			MBC_Button1 = 1,
+			MBC_Button2 = 2,
+			MBC_Button3 = 3,
+			MBC_Button4 = 4,
+			MBC_Button5 = 5,
+			MBC_Button6 = 6,
+			MBC_Button7 = 7,
 
-			ButtonLast = Button7,
-			ButtonLeft = Button0,
-			ButtonRight = Button1,
-			ButtonMiddle = Button2,
+			MBC_ButtonLast = MBC_Button7,
+			MBC_ButtonLeft = MBC_Button0,
+			MBC_ButtonRight = MBC_Button1,
+			MBC_ButtonMiddle = MBC_Button2,
 		};
 	}
 }

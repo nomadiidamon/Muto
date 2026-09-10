@@ -456,7 +456,7 @@ namespace Muto {
 
 			char buffer[256];
 			memset(buffer, 0, sizeof(buffer));
-			strncpy_s(buffer, sizeof(buffer), name.c_str(), sizeof(buffer));
+			std::strncpy(buffer, name.c_str(), sizeof(buffer) - 1);
 			if (ImGui::InputText("##Name", buffer, sizeof(buffer)))
 			{
 				name = std::string(buffer);
@@ -569,7 +569,7 @@ namespace Muto {
 						std::string filePath = FileDialogs::OpenFile("Image Files (*.png;*.jpg;*.jpeg;*.bmp;*.tga)\0*.png;*.jpg;*.jpeg;*.bmp;*.tga\0All Files (*.*)\0*.*\0");
 						if (!filePath.empty())
 						{
-							auto& tex = Texture2D::Create(filePath);
+							auto tex = Texture2D::Create(filePath);
 							if (tex)
 							{
 								component.Texture = tex;
@@ -658,7 +658,7 @@ namespace Muto {
 
 		DrawComponent<ParticleSystemComponent>("Particle System", entity, [](Entity ent, auto& component)
 			{
-				ParticleSystem& ps = component.ParticleSystem;
+				ParticleSystem& ps = component.System;
 				ParticleProps& psp = ps.m_Props;
 				ImGui::DragFloat("Lifetime", &psp.Lifetime, 0.1f, 0.0f, 10000.0f);
 				ImGui::DragFloat("Lifetime Variation", &psp.LifetimeVariation, 0.1f, 0.0f, 10000.0f);

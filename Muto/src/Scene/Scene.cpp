@@ -75,7 +75,7 @@ namespace Muto {
 		}
 
 		Camera* mainCamera = nullptr;
-		glm::mat4* camTransform = nullptr;
+		glm::mat4 camTransform;
 		{
 			auto view = m_Registry.view<TransformComponent, CameraComponent>();
 			for (auto entity : view)
@@ -83,7 +83,7 @@ namespace Muto {
 				auto [transform, camera] = view.get<TransformComponent, CameraComponent>(entity);
 				if (camera.Primary) {
 					mainCamera = &camera.Camera;
-					camTransform = &transform.GetTransform();
+					camTransform = transform.GetTransform();
 					break;
 				}
 			}
@@ -91,7 +91,7 @@ namespace Muto {
 		if (!mainCamera)
 			return;
 
-		Renderer2D::BeginScene(mainCamera->GetProjection(), *camTransform);
+		Renderer2D::BeginScene(mainCamera->GetProjection(), camTransform);
 
 
 		auto view = m_Registry.group<SpriteRendererComponent>();
@@ -165,7 +165,7 @@ namespace Muto {
 			for (auto entity : particleSystemView) {
 				auto& transform = m_Registry.get<TransformComponent>(entity);
 				auto& particleSystem = m_Registry.get<ParticleSystemComponent>(entity);
-				auto& ps = particleSystem.ParticleSystem;
+				auto& ps = particleSystem.System;
 				auto& props = ps.m_Props;
 				props.Position = transform.Translation;
 				ps.OnUpdate(ts);
@@ -259,7 +259,7 @@ namespace Muto {
 			for (auto entity : particleSystemView) {
 				auto& transform = m_Registry.get<TransformComponent>(entity);
 				auto& particleSystem = m_Registry.get<ParticleSystemComponent>(entity);
-				auto& ps = particleSystem.ParticleSystem;
+				auto& ps = particleSystem.System;
 				auto& props = ps.m_Props;
 				props.Position = transform.Translation;
 				ps.OnUpdate(ts);

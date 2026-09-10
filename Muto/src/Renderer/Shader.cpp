@@ -10,10 +10,10 @@ namespace Muto {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::API::None:	MU_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::API::OpenGL:	return CreateRef<OpenGLShader>(filepath);
+		case RenderAPI::API::RAPI_None:	MU_CORE_ASSERT(false, "RenderAPI::None is currently not supported!"); return nullptr;
+		case RenderAPI::API::RAPI_OpenGL:	return CreateRef<OpenGLShader>(filepath);
 		}
-		MU_CORE_ASSERT(false, "Unknown RendererAPI!");
+		MU_CORE_ASSERT(false, "Unknown RenderAPI!");
 		return nullptr;
 	}
 
@@ -21,10 +21,10 @@ namespace Muto {
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::API::None:	MU_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case RendererAPI::API::OpenGL:	return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc);
+			case RenderAPI::API::RAPI_None:	MU_CORE_ASSERT(false, "RenderAPI::None is currently not supported!"); return nullptr;
+			case RenderAPI::API::RAPI_OpenGL:	return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc);
 		}
-		MU_CORE_ASSERT(false, "Unknown RendererAPI!");
+		MU_CORE_ASSERT(false, "Unknown RenderAPI!");
 		return nullptr;
 	}
 

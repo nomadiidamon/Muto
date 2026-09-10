@@ -7,10 +7,10 @@
 
 /// Editor Configurations
 #ifdef MU_EDITOR_USE_DEFAULT_SCENE 
-#define MU_EDITOR_DEFAULT_SCENE "../../Resources/Scenes/TriColored3DCubeAndSpriteAnims.vesper"
+#define MU_EDITOR_DEFAULT_SCENE "Muto/src/Resources/Scenes/TriColored3DCubeAndSpriteAnims.vesper"
 #endif
 
-#define MU_DEFAULT_TEXTURE Texture2D::Create("../../Resources/Textures/Checkerboard.png")
+#define MU_DEFAULT_TEXTURE Texture2D::Create("Muto/src/Editor/assets/textures/Checkerboard.png")
 
 
 /// Gateware config

@@ -6,8 +6,8 @@ It provides a renderer, scene & entity system, editor UI, input handling, and ut
 ## Quick overview
 
 - Language: C++17
-- Platforms: Windows (Visual Studio solution can be generated via script)
-  - Planned: Linux, macOS
+- Platforms: Windows and Linux
+  - Planned: macOS
 - Build system: Premake5
 - Third-party libraries:
   - entt (entity-component system)
@@ -31,18 +31,50 @@ It provides a renderer, scene & entity system, editor UI, input handling, and ut
 git clone --recursive https://github.com/nomadiidamon/Muto <desiredLocation>
 ```
 
-## Build (Visual Studio 2022)
+## Setup
 
-1. Run the 'Win-GenProjects.bat' script from the repository root 'Muto/scripts/Win-GenProjects.bat' to generate the Visual Studio solution file (`.sln`).
-	- This runs Premake5 which is located in 'Muto/Vendor/bin/premake'.
+### Windows
+
+1. Run `scripts/Win-GenProjects.bat` from the repository root to generate the Visual Studio solution file (`.sln`).
 2. Open the solution in Visual Studio 2022.
 3. Select the desired configuration (e.g. `Debug` or `Release`) and platform (`x64`).
 4. Build and run.
 
-Troubleshooting:
-- Ensure the Windows SDK and Visual C++ toolset for VS2022 are installed.
-- If include or linker errors appear, confirm vendor project builds (GLFW, Glad, ImGui, etc.) and that project dependencies are set correctly.
-- For unresolved externals, confirm platform (x86/x64) consistency across projects.
+Requirements:
+- Windows SDK and Visual C++ toolset for Visual Studio 2022.
+- Git submodules initialized with `git clone --recursive`.
+
+### Linux
+
+On Fedora, install the compiler, Premake, OpenGL/X11 development libraries, and XDG Desktop Portal support:
+
+```bash
+sudo dnf install -y gcc-c++ gdb make premake \
+  mesa-libGL-devel libX11-devel libXrandr-devel libXinerama-devel \
+  libXcursor-devel libXi-devel libportal-devel
+```
+
+Generate the GNU Make projects and build the Debug Sandbox:
+
+```bash
+./scripts/Linux-GenProjects.sh
+make config=debug Sandbox
+./bin/Debug-linux-x86_64/Sandbox/Sandbox
+```
+
+The convenience script performs the build and launch steps in one command:
+
+```bash
+./scripts/Linux-Run.sh
+```
+
+Use `release` or `dist` as an optional argument to select another configuration:
+
+```bash
+./scripts/Linux-Run.sh release
+```
+
+The Linux editor uses XDG Desktop Portal for Open and Save dialogs. A KDE, GTK, or other compatible portal backend must be running in the desktop session. The current implementation has been tested with KDE Plasma and `xdg-desktop-portal-kde`.
 
 ## Documentation
 Documentation for this project was auto generated using Doxygen version 1.16.1 and can be found at the following: 

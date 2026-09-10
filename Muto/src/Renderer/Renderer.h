@@ -41,7 +41,7 @@ namespace Muto {
 		static void Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray, const glm::mat4& transform = glm::mat4(1.0f));
 
 		/// @brief Retrieves the current rendering API.
-		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
+		inline static RenderAPI::API GetAPI() { return RenderAPI::GetAPI(); }
 
 	private:
 		/// @brief Scene data structure containing view-projection matrix.

@@ -19,7 +19,7 @@ namespace Muto {
 		/// @brief Get the key code associated with the event.
 		inline int GetKeyCode() const { return m_KeyCode; }
 
-		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
+		EVENT_CLASS_CATEGORY(EC_Keyboard | EC_Input)
 	protected:
 
 		/// @brief Construct a KeyEvent with the specified key code.

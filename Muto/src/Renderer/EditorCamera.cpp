@@ -1,7 +1,7 @@
 #include "mupch.h"
 #include "EditorCamera.h"
 
-#include <glfw/glfw3.h>
+#include <GLFW/glfw3.h>
 
 #include <Muto.h>
 
@@ -51,11 +51,11 @@ namespace Muto {
 			glm::vec2 delta = (mouse - m_InitialMousePosition) * 0.003f;
 			m_InitialMousePosition = mouse;
 
-			if (Input::IsMouseButtonPressed(Mouse::ButtonMiddle))
+			if (Input::IsMouseButtonPressed(Mouse::MBC_ButtonMiddle))
 				MousePan(delta);
-			else if (Input::IsMouseButtonPressed(Mouse::ButtonLeft))
+			else if (Input::IsMouseButtonPressed(Mouse::MBC_ButtonLeft))
 				MouseRotate(delta);
-			else if (Input::IsMouseButtonPressed(Mouse::ButtonRight))
+			else if (Input::IsMouseButtonPressed(Mouse::MBC_ButtonRight))
 				MouseZoom(-delta.y);
 		}
 

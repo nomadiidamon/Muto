@@ -11,10 +11,10 @@ namespace Muto {
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::API::None:		MU_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case RendererAPI::API::OpenGL:		return CreateRef<OpenGLTexture2D>(width, height);
+			case RenderAPI::API::RAPI_None:		MU_CORE_ASSERT(false, "RenderAPI::None is currently not supported!"); return nullptr;
+			case RenderAPI::API::RAPI_OpenGL:		return CreateRef<OpenGLTexture2D>(width, height);
 		}
-		MU_CORE_ASSERT(false, "Unknown RendererAPI!");
+		MU_CORE_ASSERT(false, "Unknown RenderAPI!");
 		return nullptr;
 	}
 
@@ -22,10 +22,10 @@ namespace Muto {
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::API::None:		MU_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case RendererAPI::API::OpenGL:		return CreateRef<OpenGLTexture2D>(path);
+			case RenderAPI::API::RAPI_None:		MU_CORE_ASSERT(false, "RenderAPI::None is currently not supported!"); return nullptr;
+			case RenderAPI::API::RAPI_OpenGL:		return CreateRef<OpenGLTexture2D>(path);
 		}
-		MU_CORE_ASSERT(false, "Unknown RendererAPI!");
+		MU_CORE_ASSERT(false, "Unknown RenderAPI!");
 		return nullptr;
 	}
 
@@ -39,7 +39,7 @@ namespace Muto {
 	void TextureLibrary::Add(const Ref<Texture2D>& texture)
 	{
 		MU_PROFILE_FUNCTION();
-		auto& name = texture->GetName();
+		std::string name = texture->GetName();
 		Add(name, texture);
 	}
 

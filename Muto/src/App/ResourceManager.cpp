@@ -3,6 +3,7 @@
 
 namespace Muto
 {
+
 	ResourceManager::ResourceManager()
 	{
 	}

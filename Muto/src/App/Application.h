@@ -41,7 +41,7 @@ namespace Muto {
 		std::string AssetsDirectory;
 		
 		/// @brief The renderer API to use for the application.
-		RendererAPI::API RendererAPI = RendererAPI::API::OpenGL;
+		RenderAPI::API RendererAPIType = RenderAPI::API::RAPI_OpenGL;
 		
 		/// @brief The width of the application window.
 		uint32_t Width = 1280;

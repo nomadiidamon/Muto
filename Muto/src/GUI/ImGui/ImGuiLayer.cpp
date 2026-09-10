@@ -12,6 +12,7 @@
 /// @todo Remove GLFW include once abstracted
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
+#include <filesystem>
 
 /// @todo Abstract this class to OpenGL/DirectX/Vulkan etc ImGui layers
 #include "ImGuizmo.h"
@@ -39,8 +40,14 @@ namespace Muto {
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoTaskBarIcons; // Disable Platform Windows task bar icons
 		//io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoMerge;      // Disable Platform Windows merging into host window
 
-		io.Fonts->AddFontFromFileTTF((Muto::Application::Get().ResolvePath("fonts/RedHatMono/static/RedHatMono-Bold.ttf", Muto::PathResolveMode::AssetsDirectory)).c_str(), 18.0f);
-		io.FontDefault = io.Fonts->AddFontFromFileTTF((Muto::Application::Get().ResolvePath("fonts/RedHatMono/static/RedHatMono-Bold.ttf", Muto::PathResolveMode::AssetsDirectory)).c_str(), 18.0f);
+		std::filesystem::path fontPath = Muto::Application::Get().ResolvePath("fonts/RedHatMono/static/RedHatMono-Bold.ttf", Muto::PathResolveMode::AssetsDirectory);
+		if (!std::filesystem::exists(fontPath))
+			fontPath = std::filesystem::path("Muto/src/Editor/assets") / "fonts/RedHatMono/static/RedHatMono-Bold.ttf";
+
+		if (std::filesystem::exists(fontPath))
+			io.FontDefault = io.Fonts->AddFontFromFileTTF(fontPath.string().c_str(), 18.0f);
+		else
+			io.FontDefault = io.Fonts->AddFontDefault();
 
 
 		ImGui::StyleColorsDark();
@@ -87,8 +94,8 @@ namespace Muto {
 	{
 		if (m_BlockEvents) {
 			ImGuiIO& io = ImGui::GetIO();
-			e.Handled |= e.IsInCategory(EventCategoryMouse) & io.WantCaptureMouse;
-			e.Handled |= e.IsInCategory(EventCategoryKeyboard) & io.WantCaptureKeyboard;
+			e.Handled |= e.IsInCategory(EC_Mouse) & io.WantCaptureMouse;
+			e.Handled |= e.IsInCategory(EC_Keyboard) & io.WantCaptureKeyboard;
 		}
 	}
 

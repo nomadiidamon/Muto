@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef MU_PLATFORM_WINDOWS
+#if defined(MU_PLATFORM_WINDOWS) || defined(MU_PLATFORM_LINUX)
 
 extern Muto::Application* Muto::CreateApplication();
 

@@ -44,7 +44,7 @@ namespace Muto {
 		}
 
 	private:
-		static RendererAPI* s_RendererAPI;
+		static RenderAPI* s_RendererAPI;
 	};
 
 }

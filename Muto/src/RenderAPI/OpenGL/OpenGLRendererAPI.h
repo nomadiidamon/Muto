@@ -7,9 +7,9 @@
 namespace Muto {
 
 	/// @class OpenGLRendererAPI
-	/// @brief An implementation of the RendererAPI for OpenGL.
+	/// @brief An implementation of the RenderAPI for OpenGL.
 	/// @note Should only be called by the RenderCommand class.
-	class OpenGLRendererAPI : public RendererAPI 
+	class OpenGLRendererAPI : public RenderAPI
 	{
 	public:
 		/// @brief Initializes the OpenGL rendering API.
