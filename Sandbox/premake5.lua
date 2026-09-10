@@ -49,6 +49,7 @@ project "Sandbox"
 	filter "system:linux"
 		pic "On"
 		links { "GL" }
+		linkoptions { "`pkg-config --libs libportal`" }
 
 		defines
 		{

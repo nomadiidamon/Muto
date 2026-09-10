@@ -78,6 +78,8 @@ project "Muto"
 
 		links { "GL" }
 		removefiles { "src/Platform/Windows/WindowsPlatformUtils.cpp" }
+		buildoptions { "`pkg-config --cflags libportal`" }
+		linkoptions { "`pkg-config --libs libportal`" }
 
 		defines
 		{

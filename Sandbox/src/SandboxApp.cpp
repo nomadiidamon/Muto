@@ -8,6 +8,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "Sandbox2D.h"
+#include "Editor/EditorLayer.h"
 
 class ExampleLayer : public Muto::Layer
 {
@@ -180,12 +181,14 @@ class SandboxApp : public Muto::Application
 public:
 	SandboxApp()
 	{
-		PushLayer(new Sandbox2D());
+		//PushLayer(new Sandbox2D());
+		PushLayer(new Muto::EditorLayer());
 	}
 
 	SandboxApp(Muto::ApplicationSettings settings) : Muto::Application(settings)
 	{
-		PushLayer(new Sandbox2D());
+		//PushLayer(new Sandbox2D());
+		PushLayer(new Muto::EditorLayer());
 	}
 
 	~SandboxApp() {}
