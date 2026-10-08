@@ -19,7 +19,7 @@ if %ERRORLEVEL% NEQ 0 (
     echo.
     echo Install Python 3 from:
     echo.
-    echo https://www.python.org/downloads/windows/
+    echo https://www.python.org/downloads/
     echo.
     echo Make sure "Add python.exe to PATH" is selected.
     echo.
