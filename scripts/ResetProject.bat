@@ -28,6 +28,13 @@ for %%F in (*.sln) do (
     del /Q "%%F"
 )
 
+for %%F in (*Runtime.json *Shutdown.json *Startup.json) do (
+    if exist "%%F" (
+        echo Removing %%F...
+        del /Q "%%F"
+    )
+)
+
 echo.
 echo Project reset complete.
 
