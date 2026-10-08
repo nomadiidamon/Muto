@@ -26,11 +26,11 @@ project "Muto"
 	}
 
 	filter "files:Muto/vendor/imgui/backends/**.cpp"
-		flags { "NoPCH" }
+		enablepch "Off"
 	filter "files:vendor/ImGuizmo/ImGuizmo.cpp"
-		flags { "NoPCH" }
+		enablepch "Off"
 	filter "files:vendor/stb_image/stb_image.cpp"
-		flags { "NoPCH" }
+		enablepch "Off"
 	filter {}
 
 	includedirs
