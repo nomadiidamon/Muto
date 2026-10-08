@@ -3,7 +3,7 @@ setlocal
 
 echo Running encoding fix...
 
-call "%~dp0CheckEncoding.bat" fix
+call "%~dp0CheckEncodings.bat" fix
 
 if %ERRORLEVEL% NEQ 0 (
     echo.

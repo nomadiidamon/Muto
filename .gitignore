@@ -2,9 +2,10 @@
 .vs/
 bin/
 bin-int/
-Muto/Muto
-Sandbox/Sandbox
+Muto/Muto/
+Sandbox/Sandbox/
 Makefile
+*.venv/
 
 # Files
 *.user
